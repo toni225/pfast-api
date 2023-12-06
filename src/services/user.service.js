@@ -8,6 +8,18 @@ export const getAllParking = async () => {
     return apiResponse
 }
 
+export const getParking = async (id) => {
+    const getParkingEndpoint = `${baseURL}/${id}`
+    const apiResponse = axios.get(getParkingEndpoint)
+    return apiResponse
+}
+
+export const editParking = async (id,payload) => {
+    const getEditParkingEndpoint = `${baseURL}/${id}`
+    const apiResponse = axios.put(getEditParkingEndpoint)
+    return apiResponse
+}
+
 export const createParking = async (payload) => {
     const getCreateParkingEndpoint = `${baseURL}/create`
     const apiResponse = axios.post(getCreateParkingEndpoint,payload)

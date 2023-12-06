@@ -13,13 +13,13 @@ const MyParking = () => {
 
     const fetchUser = async () => {
         try{
-            const {data:{parking:user}} = await userServices.getParking(id)
-            console.log(user[0])
-            setParkingId(user[0].parking_id)
-            setParkingName(user[0].name)
+            const {data} = await userServices.getParking(id)
+            console.log(data)
+            setParkingId(data.parking[0].parking_id)
+            setParkingName(data.parking[0].name)
 
         }catch (e) {
-            
+            window.location.href = '/'
         }
     }
 
@@ -30,8 +30,8 @@ const MyParking = () => {
   return(
       <Layout>
           <h1 className="text-orange-500 text-center">MY PARKING</h1>
-          <div className="grid grid-cols-3">
-              <div>sss</div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+              <div></div>
               <form className="text-[#FFFFFE] mx-auto max-w-lg p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-[#0f0e17] dark:border-gray-700">
                   <div className="flex justify-between">
                       <div>
@@ -39,7 +39,7 @@ const MyParking = () => {
                           <p>{parkingName}</p>
                           <p>Location</p>
                       </div>
-                      <NavLink to="/create">Edit</NavLink>
+                      <NavLink to={`/myparking/${id}/edit`}>Edit</NavLink>
                   </div>
                   <hr className="mt-3 mb-3"/>
                   <div className="flex justify-center ">
@@ -73,7 +73,7 @@ const MyParking = () => {
                               <div className="w-11 h-6 bg-gray-200 rounded-full peer dark:bg-red-700 peer-focus:ring-4 peer-focus:ring-green-300 dark:peer-focus:ring-green-800 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-green-600"></div>
                           </label>
                           <p>Car</p>
-                          <input className="text-[#0f0e17]" type="number"/>
+                          <input placeholder={"Price"} className="text-[#0f0e17]" type="number"/>
                       </div>
                       <div className="flex gap-5 mt-3 justify-between">
                           <label className="ml-5 relative inline-flex items-center cursor-pointer">
@@ -81,11 +81,11 @@ const MyParking = () => {
                               <div className="w-11 h-6 bg-gray-200 rounded-full peer dark:bg-red-700 peer-focus:ring-4 peer-focus:ring-green-300 dark:peer-focus:ring-green-800 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-green-600"></div>
                           </label>
                           <p>Motorcycles</p>
-                          <input className="text-[#0f0e17]" type="number"/>
+                          <input placeholder={"Price"} className="text-[#0f0e17]" type="number"/>
                       </div>
                   </div>
               </form>
-              <div>
+              <div className="grid place-items-center md:place-items-start">
                   <button
                       type={"button"}
                       onClick={()=>navigate('/create')}

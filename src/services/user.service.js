@@ -16,13 +16,19 @@ export const getParking = async (id) => {
 
 export const editParking = async (id,payload) => {
     const getEditParkingEndpoint = `${baseURL}/${id}`
-    const apiResponse = axios.put(getEditParkingEndpoint)
+    const apiResponse = axios.put(getEditParkingEndpoint,payload)
     return apiResponse
 }
 
 export const createParking = async (payload) => {
     const getCreateParkingEndpoint = `${baseURL}/create`
     const apiResponse = axios.post(getCreateParkingEndpoint,payload)
+    return apiResponse
+}
+
+export const removeParking = async (id) => {
+    const getRemoveParkingEndpoint = `${baseURL}/${id}`
+    const apiResponse = axios.delete(getRemoveParkingEndpoint)
     return apiResponse
 }
 

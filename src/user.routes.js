@@ -15,7 +15,7 @@ router.get(
 )
 
 router.post(
-    '/',
+    '/create',
     userController.addParking
 )
 

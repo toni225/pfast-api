@@ -12,12 +12,12 @@ const getParking = (id) => {
     return UserDao.getParking(id)
 }
 
-const updateParking = (id,details) => {
-    return UserDao.updateParking(id,details)
+const editParking = (id, details) => {
+    return UserDao.editParking(id,details)
 }
 
 const deleteParking = (id) => {
     return UserDao.deleteParking(id)
 }
 
-export default {addParking, getAllParking, updateParking, deleteParking, getParking}
+export default {addParking, getAllParking, editParking, deleteParking, getParking}

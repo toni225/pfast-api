@@ -26,7 +26,7 @@ router.delete(
 
 router.put(
     '/:id',
-    userController.updateParking
+    userController.editParking
 )
 
 export default router

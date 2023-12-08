@@ -23,11 +23,11 @@ const addParking = async (req,res) => {
 
 }
 
-const updateParking = async (req,res) => {
+const editParking = async (req, res) => {
   const {body: user} = req
   const id = parseInt(req.params.id,10)
 
-  const response = await userService.updateParking(id,user)
+  const response = await userService.editParking(id,user)
 
   if(response.status !== StatusCodes.OK){
     return res.status(response.status).send({
@@ -94,4 +94,4 @@ const getParking = async (req,res) => {
   })
 }
 
-export default {addParking, getAllParking, updateParking, deleteParking, getParking}
+export default {addParking, getAllParking, editParking, deleteParking, getParking}

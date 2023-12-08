@@ -8,7 +8,7 @@ import {StatusCodes} from "http-status-codes";
 const addParking = async (details) => {
 
     const response = await supabase
-        .from('parking_lot')
+        .from('ParkingDetails')
         .insert(details)
 
     return response
@@ -17,18 +17,18 @@ const addParking = async (details) => {
 
 const getAllParking = async () => {
     const response = await supabase
-        .from('parking_lot')
+        .from('ParkingDetails')
         .select()
-        .order('parking_id',{ascending:true})
+        .order('ParkingID',{ascending:true})
 
     return response
 }
 
 const getParking = async (id) => {
     const response = await supabase
-        .from('parking_lot')
+        .from('ParkingDetails')
         .select()
-        .eq('parking_id',id)
+        .eq('ParkingID',id)
 
     if(response.data.length > 0) {
         return response
@@ -38,12 +38,12 @@ const getParking = async (id) => {
 
 }
 
-const updateParking = async (id,details) => {
+const editParking = async (id, details) => {
 
     const response = await supabase
-        .from('parking_lot')
+        .from('ParkingDetails')
         .update(details)
-        .eq('parking_id', id)
+        .eq('ParkingID', id)
         .select()
 
     return response
@@ -52,15 +52,15 @@ const updateParking = async (id,details) => {
 const deleteParking = async (id) => {
 
     const selectResponse = await supabase
-        .from('parking_lot')
-        .select('parking_id')
-        .eq('parking_id',id)
+        .from('ParkingDetails')
+        .select('ParkingID')
+        .eq('ParkingID',id)
 
     if(selectResponse.data.length > 0){
         const response = await supabase
-            .from('parking_lot')
+            .from('ParkingDetails')
             .delete()
-            .eq('parking_id', id)
+            .eq('ParkingID', id)
 
         return response.status
     }
@@ -69,4 +69,4 @@ const deleteParking = async (id) => {
         return StatusCodes.NOT_FOUND
     }
 }
-export default {addParking,getAllParking,updateParking,deleteParking,getParking}
+export default {addParking,getAllParking,editParking,deleteParking,getParking}

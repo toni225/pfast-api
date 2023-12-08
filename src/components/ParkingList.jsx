@@ -28,10 +28,11 @@ const ParkingList = () => {
                 <ul role="list" className="grid grid-cols-3 gap-4">
                     {parkingList.map((parking)=>{
                         return (
-                            <li key={parking.parking_id} className="border-solid border border-sky-500 p-4 rounded-md">
+                            <li key={parking.ParkingID} className="border-solid border border-sky-500 p-4 rounded-md">
                                 <div>
-                                    <p>{parking.parking_id}</p>
-                                    <p>{parking.name}</p>
+                                    <p>{parking.ParkingID}</p>
+                                    <p>{parking.ParkingName}</p>
+                                    <p>{new Date(parking.created_at).toLocaleString()}</p>
                                 </div>
                             </li>
                         )

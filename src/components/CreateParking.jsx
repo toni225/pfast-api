@@ -8,25 +8,39 @@ import {useNavigate} from "react-router-dom";
 const CreateParking = () => {
     const navigate = useNavigate()
 
-    const [parkingName,setParkingName] = useState("")
+    const [ParkingName,setParkingName] = useState("")
+    const [ParkingStatus,setParkingStatus] = useState(false)
+    const [Lat,setLat] = useState("")
+    const [Lng,setLng] = useState("")
+    const [FourWheelsPrice,setFourWheelsPrice] = useState(0)
+    const [FourWheelsStatus,setFourWheelsStatus] = useState(false)
+    const [TwoWheelsPrice,setTwoWheelsPrice] = useState(0)
+    const [TwoWheelsStatus,setTwoWheelsStatus] = useState(false)
+    const [ParkingSpace,setParkingSpace] = useState(0)
 
     const submitForm = async (e) => {
         e.preventDefault()
 
         const payload = {
-            name: parkingName
+            ParkingName,
+            ParkingStatus,
+            Lat,
+            Lng,
+            FourWheelsPrice,
+            FourWheelsStatus,
+            TwoWheelsPrice,
+            TwoWheelsStatus,
         }
 
         try{
             const apiResponse = await userServices.createParking(payload)
-
 
             if(apiResponse.data?.status === 201){
                 toast.success("Parking Created!")
                 console.log(apiResponse)
             }
         }catch (e){
-            toast.error("Error.")
+            toast.error("Error!")
         }
     }
 
@@ -40,13 +54,31 @@ const CreateParking = () => {
                         <div className="mb-5">
                             <label htmlFor="parking_name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Parking Name</label>
                             <input
-                                htmlFor="parking_name"
                                 id="parking_name"
                                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 onChange={e=>setParkingName(e.target.value)}
                                 placeholder="Parking Name"
                                 required
                             />
+                        </div>
+                        <div className="mb-5">
+                            <label htmlFor="parking_loc" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Location</label>
+                            <div className="flex gap-2">
+                                <input
+                                    id="parking_lat"
+                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    onChange={e=>setLat(e.target.value)}
+                                    placeholder="Latitude"
+                                    required
+                                />
+                                <input
+                                    id="parking_lng"
+                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    onChange={e=>setLng(e.target.value)}
+                                    placeholder="Longitude"
+                                    required
+                                />
+                            </div>
                         </div>
                         <button
                             type={"submit"}

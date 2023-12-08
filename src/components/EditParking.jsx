@@ -5,17 +5,34 @@ import {useEffect, useState} from "react";
 import {toast} from "react-toastify";
 import {useNavigate, useParams} from "react-router-dom";
 
-const CreateParking = () => {
+
+const EditParking = () => {
     const navigate = useNavigate()
     const {id} = useParams()
 
-    const [parkingName,setParkingName] = useState("")
+    const [ParkingName,setParkingName] = useState("")
+    const [ParkingStatus,setParkingStatus] = useState(false)
+    const [Lat,setLat] = useState("")
+    const [Lng,setLng] = useState("")
+    const [FourWheelsPrice,setFourWheelsPrice] = useState(0)
+    const [FourWheelsStatus,setFourWheelsStatus] = useState(false)
+    const [TwoWheelsPrice,setTwoWheelsPrice] = useState(0)
+    const [TwoWheelsStatus,setTwoWheelsStatus] = useState(false)
+    const [ParkingSpace,setParkingSpace] = useState(0)
 
     const fetchUser = async () => {
         try{
-            const {data:{parking:user}} = await userServices.getParking(id)
-            console.log(user[0])
-            setParkingName(user[0].name)
+            const {data:{parking}} = await userServices.getParking(id)
+
+            setParkingName(parking[0].ParkingName)
+            setParkingStatus(parking[0].ParkingStatus)
+            setLat(parking[0].Lat)
+            setLng(parking[0].Lng)
+            setFourWheelsPrice(parking[0].FourWheelsPrice)
+            setFourWheelsStatus(parking[0].FourWheelsStatus)
+            setTwoWheelsPrice(parking[0].TwoWheelsPrice)
+            setTwoWheelsStatus(parking[0].TwoWheelsStatus)
+            setParkingSpace(parking[0].ParkingSpace)
 
         }catch (e) {
 
@@ -30,7 +47,14 @@ const CreateParking = () => {
         e.preventDefault()
 
         const payload = {
-            name: parkingName
+            ParkingName,
+            ParkingStatus,
+            Lat,
+            Lng,
+            FourWheelsPrice,
+            FourWheelsStatus,
+            TwoWheelsPrice,
+            TwoWheelsStatus,
         }
 
         try{
@@ -70,30 +94,48 @@ const CreateParking = () => {
                         <div className="mb-5">
                             <label htmlFor="parking_name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Parking Name</label>
                             <input
-                                htmlFor="parking_name"
                                 id="parking_name"
-                                value={parkingName}
                                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 onChange={e=>setParkingName(e.target.value)}
                                 placeholder="Parking Name"
+                                value={ParkingName}
                                 required
                             />
                         </div>
-                        <div className="flex justify-center">
-                            <button
-                                type={"submit"}
-                                className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                            >
-                                Save
-                            </button>
-                            <button
-                                type={"button"}
-                                onClick={()=>navigate(-1)}
-                                className="ml-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                            >
-                                Cancel
-                            </button>
+                        <div className="mb-5">
+                            <label htmlFor="parking_loc" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Location</label>
+                            <div className="flex gap-2">
+                                <input
+                                    id="parking_lat"
+                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    onChange={e=>setLat(e.target.value)}
+                                    value={Lat}
+                                    placeholder="Latitude"
+                                    required
+                                />
+                                <input
+                                    id="parking_lng"
+                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    onChange={e=>setLng(e.target.value)}
+                                    value={Lng}
+                                    placeholder="Longitude"
+                                    required
+                                />
+                            </div>
                         </div>
+                        <button
+                            type={"submit"}
+                            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                        >
+                            Save
+                        </button>
+                        <button
+                            type={"button"}
+                            onClick={()=>navigate(-1)}
+                            className="ml-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                        >
+                            Back
+                        </button>
                     </form>
                     <hr className="m-5"/>
                     <div className="flex justify-center">
@@ -112,4 +154,4 @@ const CreateParking = () => {
     )
 }
 
-export default CreateParking
+export default EditParking

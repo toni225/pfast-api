@@ -1,6 +1,7 @@
 import MapDisplay from "../map/MapDisplay";
 import {useEffect, useState} from "react";
 import {getAllParking} from "../../services/user.service";
+import Layout from "./Layout";
 
 const ParkingPage = () => {
     const [data,setData] = useState([])
@@ -18,9 +19,12 @@ const ParkingPage = () => {
     },[])
 
     return (
-        <div>
-            <MapDisplay data={data} page={"ParkingPage"}/>
-        </div>
+        <Layout>
+            <div>
+                <MapDisplay data={data} page={"ParkingPage"}/>
+            </div>
+        </Layout>
+
     )
 }
 

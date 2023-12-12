@@ -6,7 +6,7 @@ const Layout = ({children}) => {
         <div>
             <TopNavigation/>
             <ToastContainer/>
-            <div className={"mt-5 mb-5"}>
+            <div>
                 {children}
             </div>
         </div>

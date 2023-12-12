@@ -82,7 +82,7 @@ const MyParking = () => {
                         <div>
                             <p>{ParkingID}</p>
                             <p>{ParkingName}</p>
-                            <span className="flex gap-2">
+                            <span className="flex gap-2 text-xs text-gray-500">
                               <p>{Lat}</p>
                               <p>{Lng}</p>
                           </span>
@@ -125,7 +125,7 @@ const MyParking = () => {
                                 <div className="w-11 h-6 bg-gray-200 rounded-full peer dark:bg-red-700 peer-focus:ring-4 peer-focus:ring-green-300 dark:peer-focus:ring-green-800 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-green-600"></div>
                             </label>
                             <p>Car</p>
-                            <input name="FourWheelsPrice" disabled={!FourWheelsStatus ? true : false} placeholder={"Price"} className="text-[#0f0e17] rounded pl-1 md:w-32" value={FourWheelsPrice ? FourWheelsPrice : ""} onChange={e=>{setFourWheelsPrice(e.target.value);submitForm({[e.target.name]:parseInt(e.target.value,10)})}} type="number"/>
+                            <input name="FourWheelsPrice" disabled={!FourWheelsStatus ? true : false} placeholder={"Price"} className="text-[#0f0e17] rounded pl-1 md:w-32 block w-full" value={FourWheelsPrice ? FourWheelsPrice : ""} onChange={e=>{setFourWheelsPrice(e.target.value);submitForm({[e.target.name]:parseInt(e.target.value,10)})}} type="number"/>
                         </div>
                         <div className="flex gap-5 mt-3 justify-between">
                             <label className="ml-5 relative inline-flex items-center cursor-pointer">
@@ -133,7 +133,7 @@ const MyParking = () => {
                                 <div className="w-11 h-6 bg-gray-200 rounded-full peer dark:bg-red-700 peer-focus:ring-4 peer-focus:ring-green-300 dark:peer-focus:ring-green-800 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-green-600"></div>
                             </label>
                             <p>Motorcycles</p>
-                            <input name="TwoWheelsPrice" disabled={!TwoWheelsStatus ? true : false} placeholder={"Price"} className="text-[#0f0e17] rounded pl-1 md:w-32" value={TwoWheelsPrice ? TwoWheelsPrice : ""} onChange={e=>{setTwoWheelsPrice(e.target.value);submitForm({[e.target.name]:parseInt(e.target.value,10)})}} type="number"/>
+                            <input name="TwoWheelsPrice" disabled={!TwoWheelsStatus ? true : false} placeholder={"Price"} className="text-[#0f0e17] rounded pl-1 md:w-32 block w-full" value={TwoWheelsPrice ? TwoWheelsPrice : ""} onChange={e=>{setTwoWheelsPrice(e.target.value);submitForm({[e.target.name]:parseInt(e.target.value,10)})}} type="number"/>
                         </div>
                         {/*<button type={"submit"} onClick={submitForm({FourWheelsPrice},{TwoWheelsPrice})}>Save</button>*/}
                     </div>

@@ -67,12 +67,11 @@ const deleteParking = async (req,res) => {
 const getAllParking = async (req,res) => {
   const response = await userService.getAllParking()
 
-  // return res.status(response.status).send({
-  //   status: response.status,
-  //   statusText: response.statusText,
-  //   users: response.data
-  // })
-  return res.json(['etetete','etetetssst'])
+  return res.status(response.status).send({
+    status: response.status,
+    statusText: response.statusText,
+    users: response.data
+  })
 }
 
 const getParking = async (req,res) => {

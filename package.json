@@ -2,9 +2,9 @@
   "name": "pfast-api",
   "version": "1.0.0",
   "description": "pfast-api",
-  "main": "src/index.js",
+  "main": "api/index.js",
   "scripts": {
-    "start": "nodemon --exec babel-node src/index.js",
+    "start": "nodemon --exec babel-node api/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "pfast",

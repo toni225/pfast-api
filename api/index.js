@@ -13,7 +13,8 @@ app.use(express.json())
 app.use(helmet())
 app.use(cors())
 
-app.use('/v1/user',userRoutes)
+// app.use('/v1/user',userRoutes)
+app.use('/api/v1/user',userRoutes)
 
 app.listen(port,()=>{
     console.log(`open: http://localhost:${port}`)

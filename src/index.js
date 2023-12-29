@@ -19,3 +19,5 @@ app.listen(port,()=>{
     console.log(`open: http://localhost:${port}`)
 })
 
+export default app
+

@@ -1,8 +1,8 @@
 import axios from "axios";
 
 //--------Change the url if what you will use
-// const baseURL = "http://localhost:4000/v1/user"
-const baseURL = "https://pfast-api.vercel.app/v1/user"
+const baseURL = "http://localhost:4000/v1/user"
+// const baseURL = "https://pfast-api.vercel.app/v1/user"
 
 export const getAllParking = async () => {
     const getAllParkingEndpoint = `${baseURL}/all`
@@ -31,6 +31,24 @@ export const createParking = async (payload) => {
 export const removeParking = async (id) => {
     const getRemoveParkingEndpoint = `${baseURL}/${id}`
     const apiResponse = axios.delete(getRemoveParkingEndpoint)
+    return apiResponse
+}
+
+export const signup = async (payload) => {
+    const getSignupEndpoint = `${baseURL}/signup`
+    const apiResponse = axios.post(getSignupEndpoint,payload)
+    return apiResponse
+}
+
+export const signin = async (payload) => {
+    const signin = `${baseURL}/signin`
+    const apiResponse = axios.post(signin)
+    return apiResponse
+}
+
+export const signout = async () => {
+    const signout = `${baseURL}/signout`
+    const apiResponse = axios.post(signout)
     return apiResponse
 }
 

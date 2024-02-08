@@ -20,12 +20,12 @@ const Login = () => {
 
           </center>
           <div class="flex justify-center space-x-4">
-            <a href="#signup" class="inline-block font-sans text-sm antialiased font-bold leading-normal text-[#f25f4c]">Sign up</a>
-            <a href="#recovery" class="inline-block font-sans text-sm antialiased font-bold leading-normal text-[#f25f4c]">Forgot Password?</a>
+            <a href="signup" class="inline-block font-sans text-sm antialiased leading-normal text-[#f25f4c]">Sign up</a>
+            <a href="#recovery" class="inline-block font-sans text-sm antialiased leading-normal text-[#f25f4c]">Forgot Password?</a>
           </div>
 
           <div class="flex justify-center pt-5">
-            <a href="?" class="inline-block font-sans text-sm antialiased font-bold leading-normal text-[#f25f4c]">Are you a Parking Owner?</a>
+            <a href="?" class="inline-block font-sans text-sm antialiased leading-normal text-[#f25f4c]">Are you a Parking Owner?</a>
           </div>
 
 

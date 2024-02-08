@@ -69,4 +69,35 @@ const deleteParking = async (id) => {
         return StatusCodes.NOT_FOUND
     }
 }
-export default {addParking,getAllParking,editParking,deleteParking,getParking}
+
+const signUp = async (details) => {
+
+    const response = await supabase.auth.signUp({
+        email: details.email,
+        password: details.password,
+        options: {
+            emailRedirectTo: 'http://localhost:3000/',
+        },
+    })
+    return response
+
+}
+
+const signIn = async (details) => {
+
+    const response = await supabase.auth.signInWithPassword({
+        email: details.email,
+        password: details.password,
+    })
+    return response
+
+}
+
+const signOut = async () => {
+
+    const response = await supabase.auth.signOut()
+    return response
+
+}
+
+export default {addParking,getAllParking,editParking,deleteParking,getParking,signUp,signIn,signOut}

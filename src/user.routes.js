@@ -29,4 +29,18 @@ router.put(
     userController.editParking
 )
 
+router.post(
+    '/signup',
+    userController.signUp
+)
+
+router.post(
+    '/signin',
+    userController.signIn
+)
+
+router.post(
+    '/signout',
+    userController.signOut
+)
 export default router

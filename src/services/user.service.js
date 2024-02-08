@@ -20,4 +20,15 @@ const deleteParking = (id) => {
     return UserDao.deleteParking(id)
 }
 
-export default {addParking, getAllParking, editParking, deleteParking, getParking}
+const signUp = (details) => {
+    return UserDao.signUp(details)
+}
+
+const signIn = (details) => {
+    return UserDao.signIn(details)
+}
+
+const signOut = () => {
+    return UserDao.signOut()
+}
+export default {addParking, getAllParking, editParking, deleteParking, getParking, signUp, signIn, signOut}

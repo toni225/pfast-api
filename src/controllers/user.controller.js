@@ -100,12 +100,14 @@ const signUp = async (req,res) => {
   const response = await userService.signUp(user)
 
   if(response.error){
-    return res.status(StatusCodes.BAD_REQUEST).send({
+    return res.status(response.error.status).send({
+      status: response.error.status,
       data: response.error
     })
   }
 
   return res.status(201).send({
+    status: StatusCodes.CREATED,
     data: response.data
   })
 }

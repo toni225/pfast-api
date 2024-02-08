@@ -77,6 +77,9 @@ const signUp = async (details) => {
         password: details.password,
         options: {
             emailRedirectTo: 'http://localhost:3000/',
+            data: {
+                isParkingOwner: details.isParkingOwner
+            }
         },
     })
     return response

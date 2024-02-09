@@ -30,7 +30,7 @@ const getParking = async (id) => {
         .select()
         .eq('ParkingID',id)
 
-    if(response.data.length > 0) {
+    if(response.data?.length > 0) {
         return response
     }
 
@@ -65,7 +65,7 @@ const deleteParking = async (id) => {
         return response.status
     }
 
-    if(selectResponse.data.length === 0){
+    if(selectResponse.data?.length === 0){
         return StatusCodes.NOT_FOUND
     }
 }
@@ -103,4 +103,28 @@ const signOut = async () => {
 
 }
 
-export default {addParking,getAllParking,editParking,deleteParking,getParking,signUp,signIn,signOut}
+const getUser = async (token) => {
+
+    const response = await supabase.auth.getUser(token)
+    return response
+}
+
+const getUserInfo = async (id) => {
+    try{
+        const response = await supabase
+            .from('UserInfo')
+            .select()
+            .eq("id",id)
+
+        return response
+    }catch (e) {
+        return e
+    }
+
+}
+
+export default {
+    addParking,getAllParking,editParking,
+    deleteParking,getParking,signUp,signIn,
+    signOut,getUser,getUserInfo
+}

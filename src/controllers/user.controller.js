@@ -139,8 +139,44 @@ const signOut = async (req,res) => {
     })
   }
 
-  return res.status(201).send({
+  return res.status(200).send({
     data: "You're leaving..."
+  })
+}
+
+const getUser = async (req,res) => {
+  const token = req.params.token
+
+  const response = await userService.getUser(token)
+
+  if(response.error){
+    return res.status(response.error.status).send({
+      data: response.error
+    })
+  }
+
+  return res.status(201).send({
+    data: response.data
+  })
+}
+
+const getUserInfo = async (req, res) => {
+  const id = req.params.id
+
+  const response = await userService.getUserInfo(id)
+
+  if(response === StatusCodes.NOT_FOUND){
+    return res.status(StatusCodes.NOT_FOUND).send({
+      status: StatusCodes.NOT_FOUND,
+      statusText: "Not_Found.",
+      message: "User not found."
+    })
+  }
+
+  return res.status(response.status).send({
+    status: response.status,
+    statusText: response.statusText,
+    data: response.data
   })
 }
 
@@ -152,5 +188,7 @@ export default {
   getParking,
   signUp,
   signIn,
-  signOut
+  signOut,
+  getUser,
+  getUserInfo
 }

@@ -31,4 +31,20 @@ const signIn = (details) => {
 const signOut = () => {
     return UserDao.signOut()
 }
-export default {addParking, getAllParking, editParking, deleteParking, getParking, signUp, signIn, signOut}
+
+const getUser = (token) => {
+    return UserDao.getUser(token)
+}
+
+const getUserInfo = (id) => {
+    return UserDao.getUserInfo(id)
+}
+export default {
+    addParking,
+    getAllParking,
+    editParking,
+    deleteParking,
+    getParking,
+    signUp, signIn, signOut,
+    getUser, getUserInfo
+}

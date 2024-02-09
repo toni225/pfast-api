@@ -43,4 +43,14 @@ router.post(
     '/signout',
     userController.signOut
 )
+
+router.get(
+    `/getuser/:token`,
+    userController.getUser
+)
+
+router.get(
+    `/getuserinfo/:id`,
+    userController.getUserInfo
+)
 export default router

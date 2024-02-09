@@ -10,6 +10,7 @@ import ParkingPage from "./components/layout/ParkingPage";
 import Login from "./components/Login"
 import SignUp from "./components/SignUp";
 import {ToastContainer} from "react-toastify";
+import AccountPage from "./components/AccountPage";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             <Route path={'/parking'} element={<ParkingPage/>}/>
             <Route path={'/login'} element={<Login/>}/>
             <Route path={'/signup'} element={<SignUp/>}/>
+            <Route path={'/account'} element={<AccountPage/>}/>
         </Routes>
       </BrowserRouter>
     </div>

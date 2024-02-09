@@ -47,8 +47,20 @@ export const login = async (payload) => {
 }
 
 export const signout = async () => {
-    const signout = `${baseURL}/signout`
-    const apiResponse = axios.post(signout)
+    const getSignoutEndpoint = `${baseURL}/signout`
+    const apiResponse = axios.post(getSignoutEndpoint)
+    return apiResponse
+}
+
+export const getUser = async (token) => {
+    const getUserEndpoint = `${baseURL}/getuser/${token}`
+    const apiResponse = axios.get(getUserEndpoint)
+    return apiResponse
+}
+
+export const getUserInfo = async (id) => {
+    const getUserInfoEndpoint = `${baseURL}/getuserinfo/${id}`
+    const apiResponse = axios.get(getUserInfoEndpoint)
     return apiResponse
 }
 

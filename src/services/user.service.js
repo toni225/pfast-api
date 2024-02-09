@@ -40,9 +40,9 @@ export const signup = async (payload) => {
     return apiResponse
 }
 
-export const signin = async (payload) => {
-    const signin = `${baseURL}/signin`
-    const apiResponse = axios.post(signin)
+export const login = async (payload) => {
+    const getSigninEndpoint = `${baseURL}/signin`
+    const apiResponse = axios.post(getSigninEndpoint,payload)
     return apiResponse
 }
 

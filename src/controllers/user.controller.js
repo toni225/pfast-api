@@ -118,7 +118,8 @@ const signIn = async (req,res) => {
   const response = await userService.signIn(user)
 
   if(response.error){
-    return res.status(StatusCodes.BAD_REQUEST).send({
+    return res.status(response.error.status).send({
+      status: response.error.status,
       data: response.error
     })
   }

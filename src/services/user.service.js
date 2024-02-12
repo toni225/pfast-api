@@ -39,6 +39,15 @@ const getUser = (token) => {
 const getUserInfo = (id) => {
     return UserDao.getUserInfo(id)
 }
+
+const getSessions = () => {
+    return UserDao.getSessions()
+}
+
+const updateUser = (id, details) => {
+    return UserDao.updateUser(id,details)
+}
+
 export default {
     addParking,
     getAllParking,
@@ -46,5 +55,6 @@ export default {
     deleteParking,
     getParking,
     signUp, signIn, signOut,
-    getUser, getUserInfo
+    getUser, getUserInfo, getSessions,
+    updateUser
 }

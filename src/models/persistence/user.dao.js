@@ -123,8 +123,27 @@ const getUserInfo = async (id) => {
 
 }
 
+const getSessions = async () => {
+
+    const response = await supabase.auth.getSession()
+    return response
+
+}
+
+const updateUser = async (id, details) => {
+
+    const response = await supabase
+        .from('UserInfo')
+        .update(details)
+        .eq('id', id)
+        .select()
+
+    return response
+}
+
 export default {
     addParking,getAllParking,editParking,
     deleteParking,getParking,signUp,signIn,
-    signOut,getUser,getUserInfo
+    signOut,getUser,getUserInfo,getSessions,
+    updateUser
 }

@@ -180,6 +180,45 @@ const getUserInfo = async (req, res) => {
   })
 }
 
+const getSessions = async (req, res) => {
+  const response = await userService.getSessions()
+
+  if(response?.status === StatusCodes.NOT_FOUND){
+    return res.status(StatusCodes.NOT_FOUND).send({
+      status: StatusCodes.NOT_FOUND,
+      statusText: "Not_Found.",
+      message: response
+    })
+  }
+
+  return res.status(response?.status).send({
+    status: response.status,
+    statusText: response.statusText,
+    data: response
+  })
+}
+
+const updateUser = async (req, res) => {
+  const {body: user} = req
+  const id = req.params.id
+
+  const response = await userService.updateUser(id,user)
+
+  if(response.status !== StatusCodes.OK){
+    return res.status(response.status).send({
+      status: response.status,
+      statusText: response.statusText,
+      message: "Error."
+    })
+  }
+
+  return res.status(response.status).send({
+    status: response.status,
+    statusText: response.statusText,
+    message: "User Successfully Updated."
+  })
+}
+
 export default {
   addParking,
   getAllParking,
@@ -190,5 +229,7 @@ export default {
   signIn,
   signOut,
   getUser,
-  getUserInfo
+  getUserInfo,
+  getSessions,
+  updateUser
 }

@@ -3,7 +3,7 @@ import userController from "./controllers/user.controller"
 const router = express.Router();
 
 
-
+//================================parking APIs========================//
 router.get(
     '/all',
     userController.getAllParking
@@ -29,6 +29,7 @@ router.put(
     userController.editParking
 )
 
+//============================user APIs=================================//
 router.post(
     '/signup',
     userController.signUp
@@ -52,5 +53,15 @@ router.get(
 router.get(
     `/getuserinfo/:id`,
     userController.getUserInfo
+)
+
+router.get(
+    `/getsession`,
+    userController.getSessions
+)
+
+router.put(
+    '/updateuser/:id',
+    userController.updateUser
 )
 export default router

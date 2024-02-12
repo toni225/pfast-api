@@ -33,12 +33,13 @@ const Login = () => {
 
         const userId = apiResponse.data.data.user.id
         localStorage.setItem('session',apiResponse.data.data.session.access_token)
-        console.log(userId)
+
         try{
           const userInfoResponse = await userService.getUserInfo(userId)
-          console.log(userInfoResponse)
+
           if(userInfoResponse.data.data.length > 0){
-            console.log(userInfoResponse)
+            console.log(userInfoResponse.data.data[0])
+            localStorage.setItem('user',JSON.stringify(userInfoResponse.data.data[0]))
             toast.success("Welcome!")
             navigate('/')
           }else{

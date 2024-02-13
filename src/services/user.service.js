@@ -48,6 +48,10 @@ const updateUser = (id, details) => {
     return UserDao.updateUser(id,details)
 }
 
+const addUserInfo = (details) => {
+    return UserDao.addUserInfo(details)
+}
+
 export default {
     addParking,
     getAllParking,
@@ -56,5 +60,5 @@ export default {
     getParking,
     signUp, signIn, signOut,
     getUser, getUserInfo, getSessions,
-    updateUser
+    updateUser, addUserInfo
 }

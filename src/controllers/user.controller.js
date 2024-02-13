@@ -219,6 +219,27 @@ const updateUser = async (req, res) => {
   })
 }
 
+const addUserInfo = async (req,res) => {
+  const {body: user} = req
+
+  const response = await userService.addUserInfo(user)
+
+  if(response.status !== StatusCodes.CREATED && response.status !== StatusCodes.OK){
+    return res.status(response.status).send({
+      status: response.status,
+      statusText: response.statusText,
+      message: response
+    })
+  }
+
+  return res.status(response.status).send({
+    status: response.status,
+    statusText: response.statusText,
+    message: "User Successfully Created."
+  })
+
+}
+
 export default {
   addParking,
   getAllParking,
@@ -231,5 +252,5 @@ export default {
   getUser,
   getUserInfo,
   getSessions,
-  updateUser
+  updateUser, addUserInfo
 }

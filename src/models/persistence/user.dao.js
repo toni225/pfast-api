@@ -141,9 +141,20 @@ const updateUser = async (id, details) => {
     return response
 }
 
+const addUserInfo = async (details) => {
+
+    const response = await supabase
+        .from('UserInfo')
+        .insert(details)
+        .select()
+
+    return response
+
+}
+
 export default {
     addParking,getAllParking,editParking,
     deleteParking,getParking,signUp,signIn,
     signOut,getUser,getUserInfo,getSessions,
-    updateUser
+    updateUser, addUserInfo
 }

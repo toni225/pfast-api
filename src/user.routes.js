@@ -64,4 +64,10 @@ router.put(
     '/updateuser/:id',
     userController.updateUser
 )
+
+router.post(
+    '/adduserinfo',
+    userController.addUserInfo
+)
+
 export default router

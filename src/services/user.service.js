@@ -77,3 +77,8 @@ export const updateUser = async (id,payload) => {
     return apiResponse
 }
 
+export const addUser = async (payload) => {
+    const getAddUserEndpoint = `${baseURL}/adduserinfo`
+    const apiResponse = axios.post(getAddUserEndpoint,payload)
+    return apiResponse
+}

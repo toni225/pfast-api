@@ -13,7 +13,7 @@ const AccountPage = () => {
         FirstName:'',
         MiddleName: '',
         LastName:'',
-        Address:'',ContactNum:'',username:'',id:'',})
+        Address:'',ContactNum:0,username:'',id:''})
 
     const getUserInfo = async () => {
         try{
@@ -73,7 +73,29 @@ const AccountPage = () => {
     const onSubmitForm = async (e) => {
         try{
             e.preventDefault()
+
+            const getUser = localStorage.getItem('user')
             const {data:{data:{user:{id}}}} = await getUserInfo()
+
+            const payload = {
+                FirstName: user.FirstName,
+                MiddleName: user.MiddleName,
+                LastName:user.LastName,
+                Address:user.Address,ContactNum:user.ContactNum,
+                username:user.username,id}
+
+            if(getUser === null){
+                userService.addUser(payload)
+                    .then(response=>{
+                        toast.success(response.data.message)
+                        localStorage.setItem('user',JSON.stringify(payload))
+                    })
+                    .catch(e=>{
+                        if(e.response.data.message.error.code == 23505){
+                            toast.warning(`${user.username} is already exists.`)
+                        }
+                    })
+            }
 
             if(id===user.id){
                 userService.updateUser(id,user)
@@ -85,8 +107,10 @@ const AccountPage = () => {
 
             }
 
-        }catch (e) {
 
+
+        }catch (e) {
+            console.log(e)
         }
     }
 
@@ -101,10 +125,11 @@ const AccountPage = () => {
               <div className={'place-self-center'}>
                   <form className={'flex-row'} onSubmit={onSubmitForm}>
                       <div className={'my-2 flex justify-between'}>
-                          <span className={'mr-2'}>Username</span>
+                          <span className={'mr-2'}>{localStorage.getItem('user') !==null ? "*Username" : "Username"}</span>
                           <input
                               className={'border rounded border-gray-400'}
                               type={'text'}
+                              disabled={localStorage.getItem('user') !==null}
                               value={user.username || ''}
                               onChange={e => setUser({...user, username: e.target.value})}
                           />

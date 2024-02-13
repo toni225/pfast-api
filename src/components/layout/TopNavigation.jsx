@@ -12,7 +12,6 @@ const TopNavigation = () => {
        Auth.isLoggedIn().then(res=>{setIsLogin(res)}).catch(()=>{setIsLogin(false)})
     },[])
 
-    console.log(isLogin)
     return(
         <>
             <nav className="border-gray-200 bg-[#0f0E17]">

@@ -1,4 +1,4 @@
-import {BrowserRouter,Routes,Route} from "react-router-dom";
+import {BrowserRouter, Routes, Route, Navigate} from "react-router-dom";
 
 import 'react-toastify/dist/ReactToastify.css'
 
@@ -12,16 +12,8 @@ import SignUp from "./components/SignUp";
 import {ToastContainer} from "react-toastify";
 import AccountPage from "./components/AccountPage";
 import {Protected} from "./components/protected";
-import {useEffect, useState} from "react";
-import {Auth} from "./services/auth.service";
 
 function App() {
-
-    const [isAccessible,setIsAccessible] = useState(null)
-
-    useEffect(()=>{
-       setIsAccessible(Auth.isLoggedIn)
-    },[])
 
   return (
     <div className="App">
@@ -29,13 +21,11 @@ function App() {
       <BrowserRouter>
         <Routes>
             <Route path={'/'} element={<ParkingList/>}/>
-            <Route element={<Protected isAccessible={isAccessible}/>}>
-                <Route path={'/account'} element={<AccountPage/>}/>
-                <Route path={'/create'} element={<CreateParking/>}/>
-                <Route path={'/myparking/:id'} element={<MyParking/>}/>
-                <Route path={'/myparking/:id/edit'} element={<EditParking/>}/>
-                <Route path={'/parking'} element={<ParkingPage/>}/>
-            </Route>
+            <Route path={'/account'} element={<Protected><AccountPage/></Protected>}/>
+            <Route path={'/create'} element={<Protected><CreateParking/></Protected>}/>
+            <Route path={'/myparking/:id'} element={<Protected><MyParking/></Protected>}/>
+            <Route path={'/myparking/:id/edit'} element={<Protected><EditParking/></Protected>}/>
+            <Route path={'/parking'} element={<Protected><ParkingPage/></Protected>}/>
             <Route path={'/login'} element={<Login/>}/>
             <Route path={'/signup'} element={<SignUp/>}/>
         </Routes>

@@ -103,77 +103,77 @@ const AccountPage = () => {
               {/*<button className={"border p-2 bg-slate-900 text-amber-100"} onClick={onSignOut}>Sign Out</button>*/}
               {/*<button className={"border p-2 bg-slate-900 text-amber-100"} onClick={onGetUser}>get User</button>*/}
               <div></div>
-              <div className={'place-self-center'}>
+              <div className={'place-self-center bg-[#0f0e17] rounded-xl p-6 mt-10 text-white'}>
                   <form className={'flex-row'} onSubmit={onSubmitForm}>
-                      <div className={'my-2 flex justify-between'}>
+                  <div className={'my-2 flex justify-between items-center'}>
                           <span className={'mr-2'}>{localStorage.getItem('user') !==null ? "*Username" : "Username"}</span>
                           <input
-                              className={'border rounded border-gray-400'}
+                              className={'disabled:cursor-not-allowed px-3 py-3 font-sans text-sm border rounded-md border-gray-400'}
                               type={'text'}
                               disabled={localStorage.getItem('user') !==null}
                               value={user.username || ''}
                               onChange={e => setUser({...user, username: e.target.value})}
                           />
                       </div>
-                      <div className={'my-2 flex justify-between'}>
-                          <span className={'mr-2'}>First Name</span>
+                      <div className={'my-2 flex justify-between items-center'}>
+                          <span className={'mr-2 '}>First Name</span>
                           <input
-                              className={'border rounded border-gray-400'}
+                              className={'disabled:cursor-not-allowed px-3 py-3 font-sans text-sm border rounded-md border-gray-400 bg-transparent'}
                               type={'text'}
                               value={user.FirstName || ''}
                               onChange={e => setUser({...user, FirstName: e.target.value})}
                           />
                       </div>
-                      <div className={'my-2 flex justify-between'}>
+                      <div className={'my-2 flex justify-between items-center'}>
                           <span className={'mr-2'}>Middle Name</span>
                           <input
-                              className={'border rounded border-gray-400'}
+                              className={'disabled:cursor-not-allowed px-3 py-3 font-sans text-sm border rounded-md border-gray-400 bg-transparent'}
                               type={'text'}
                               value={user.MiddleName || ''}
                               onChange={e => setUser({...user, MiddleName: e.target.value})}
                           />
                       </div>
-                      <div className={'my-2 flex justify-between'}>
+                      <div className={'my-2 flex justify-between items-center'}>
                           <span className={'mr-2'}>Last Name</span>
                           <input
-                              className={'border rounded border-gray-400'}
+                              className={'disabled:cursor-not-allowed px-3 py-3 font-sans text-sm border rounded-md border-gray-400 bg-transparent'}
                               type={'text'}
                               value={user.LastName || ''}
                               onChange={e => setUser({...user, LastName: e.target.value})}
                           />
                       </div>
-                      <div className={'my-2 flex justify-between'}>
+                      <div className={'my-2 flex justify-between items-center'}>
                           <span className={'mr-2'}>Email</span>
                           <input
-                              className={'border rounded border-gray-400'}
+                              className={'disabled:cursor-not-allowed px-3 py-3 font-sans text-sm border rounded-md border-gray-400 bg-transparent'}
                               value={email || ''}
                               disabled
                               type={'email'}
                           />
                       </div>
-                      <div className={'my-2 flex justify-between'}>
+                      <div className={'my-2 flex justify-between items-center'}>
                           <span className={'mr-2'}>Address</span>
                           <input
-                              className={'border rounded border-gray-400'}
+                              className={'disabled:cursor-not-allowed px-3 py-3 font-sans text-sm border rounded-md border-gray-400 bg-transparent'}
                               type={'text'}
                               value={user.Address || ''}
                               onChange={e => setUser({...user, Address: e.target.value})}
                           />
                       </div>
-                      <div className={'my-2 flex justify-between'}>
+                      <div className={'my-2 flex justify-between items-center'}>
                           <span className={'mr-2'}>Contact Number</span>
                           <input
-                              className={'border rounded border-gray-400'}
+                              className={'disabled:cursor-not-allowed px-3 py-3 font-sans text-sm border rounded-md border-gray-400 bg-transparent'}
                               type={'text'}
                               value={user.ContactNum || ''}
                               onChange={e => setUser({...user, ContactNum: e.target.value})}
                           />
                       </div>
-                      {!isParkingOwner && <div className={'my-2 flex justify-between'}>
+                      {!isParkingOwner && <div className={'my-2 flex justify-between items-center'}>
                           <label htmlFor={'vehicles'} className={'mr-2'}>Vehicle</label>
-                          <select id="vehicles" name="vehicles" className={'border rounded border-gray-400 w-1/2 mr-3'}>
-                              <option value="4">4 wheels</option>
-                              <option value="2">2 wheels</option>
+                          <select id="vehicles" name="vehicles" className={'disabled:cursor-not-allowed px-3 py-3 font-sans text-sm border rounded-md border-gray-400 bg-transparent hover:ring-4'}>
+                              <option value="4" className='text-white bg-[#0f0e17]'>4 wheels</option>
+                              <option value="2" className='text-white bg-[#0f0e17]'>2 wheels</option>
                           </select>
                       </div>}
                       <div>

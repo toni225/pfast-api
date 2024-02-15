@@ -9,6 +9,8 @@ import {toast} from "react-toastify";
 const AccountPage = () => {
     const navigate = useNavigate()
 
+    const [email,setEmail] = useState('')
+    const [isParkingOwner,setIsParkingOwner] = useState(null)
     const [user,setUser] = useState({
         FirstName:'',
         MiddleName: '',
@@ -32,6 +34,12 @@ const AccountPage = () => {
     useEffect(()=>{
         // getUserInfo()
         try{
+            getUserInfo().then(response=>{
+                setEmail(response.data.data.user.email)
+                setIsParkingOwner(response.data.data.user?.user_metadata.isParkingOwner)
+                console.log(response)
+            })
+                .catch(e=>{console.log(e)})
             const getUser = localStorage.getItem('user')
             if(getUser!==null){
                 setUser(JSON.parse(getUser))
@@ -98,7 +106,7 @@ const AccountPage = () => {
             }
 
             if(id===user.id){
-                userService.updateUser(id,user)
+                userService.updateUser(id,payload)
                     .then(response=> {
                         toast.success(response.data.message)
                         localStorage.setItem('user',JSON.stringify(user))
@@ -165,6 +173,8 @@ const AccountPage = () => {
                           <span className={'mr-2'}>Email</span>
                           <input
                               className={'border rounded border-gray-400'}
+                              value={email || ''}
+                              disabled
                               type={'email'}
                           />
                       </div>
@@ -186,19 +196,18 @@ const AccountPage = () => {
                               onChange={e => setUser({...user, ContactNum: e.target.value})}
                           />
                       </div>
-                      <div className={'my-2 flex justify-between'}>
+                      {!isParkingOwner && <div className={'my-2 flex justify-between'}>
                           <label htmlFor={'vehicles'} className={'mr-2'}>Vehicle</label>
                           <select id="vehicles" name="vehicles" className={'border rounded border-gray-400 w-1/2 mr-3'}>
-                              <option value="volvo">4 wheels</option>
-                              <option value="saab">2 wheels</option>
+                              <option value="4">4 wheels</option>
+                              <option value="2">2 wheels</option>
                           </select>
-                      </div>
+                      </div>}
                       <div>
                           <button type={'submit'} className={'border bg-blue-800 text-white w-1/2 rounded'}>Save</button>
                           <button type={'button'} className={'border bg-blue-800 text-white w-1/2 rounded'}>Cancel</button>
 
                       </div>
-
                   </form>
               </div>
               <div className={'grid-rows-3 place-self-center text-center'}>
@@ -214,7 +223,6 @@ const AccountPage = () => {
                           className={"rounded w-full px-2 text-white bg-red-700"}
                       >Sign Out</button>
                   </div>
-
               </div>
           </div>
       </Layout>

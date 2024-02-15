@@ -17,3 +17,31 @@ export const isLoggedIn = async () => {
     }
 
 }
+
+export const getUserInfo = async () => {
+    try{
+        const token = localStorage.getItem('session')
+        if(token!==null){
+            const response = await userService.getUser(token)
+
+            return response
+        }
+
+    }catch (e) {
+        return e
+    }
+}
+
+export const onSignOut = async () => {
+    try {
+        const apiResponse = await userService.signout()
+
+        if(apiResponse.status === 200){
+            window.location.href ='/'
+            localStorage.clear()
+        }
+
+    }catch (e) {
+        console.log(e)
+    }
+}

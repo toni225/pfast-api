@@ -1,9 +1,11 @@
+import * as userService from '../services/user.service'
+import * as authService from '../services/auth.service'
+
 import {getUser, signout} from "../services/user.service";
 import {useNavigate} from "react-router-dom";
 import userData from "./data/user.data";
 import {useEffect, useState} from "react";
 import Layout from "./layout/Layout";
-import * as userService from '../services/user.service'
 import {toast} from "react-toastify";
 
 const AccountPage = () => {
@@ -17,27 +19,13 @@ const AccountPage = () => {
         LastName:'',
         Address:'',ContactNum:0,username:'',id:''})
 
-    const getUserInfo = async () => {
-        try{
-            const token = localStorage.getItem('session')
-            if(token!==null){
-                const response = await userService.getUser(token)
-
-                return response
-            }
-
-        }catch (e) {
-            console.log(e)
-        }
-    }
-
     useEffect(()=>{
         // getUserInfo()
         try{
-            getUserInfo().then(response=>{
+            authService.getUserInfo().then(response=>{
                 setEmail(response.data.data.user.email)
                 setIsParkingOwner(response.data.data.user?.user_metadata.isParkingOwner)
-                console.log(response)
+                // console.log(response)
             })
                 .catch(e=>{console.log(e)})
             const getUser = localStorage.getItem('user')
@@ -52,38 +40,23 @@ const AccountPage = () => {
 
     },[])
 
-    const onSignOut = async () => {
-        try {
-            const apiResponse = await signout()
-
-            if(apiResponse.status === 200){
-                navigate('/login')
-                localStorage.clear()
-                userData.session = {}
-            }
-
-        }catch (e) {
-            console.log(e)
-        }
-    }
-
-    const onGetUser = async () => {
-        try {
-            const token = localStorage.getItem('session')
-            const apiResponse = await getUser(token)
-
-            console.log(apiResponse)
-        } catch (e) {
-            navigate('/login')
-        }
-    }
+    // const onGetUser = async () => {
+    //     try {
+    //         const token = localStorage.getItem('session')
+    //         const apiResponse = await getUser(token)
+    //
+    //         console.log(apiResponse)
+    //     } catch (e) {
+    //         navigate('/login')
+    //     }
+    // }
 
     const onSubmitForm = async (e) => {
         try{
             e.preventDefault()
 
             const getUser = localStorage.getItem('user')
-            const {data:{data:{user:{id}}}} = await getUserInfo()
+            const {data:{data:{user:{id}}}} = await authService.getUserInfo()
 
             const payload = {
                 FirstName: user.FirstName,
@@ -219,7 +192,7 @@ const AccountPage = () => {
                   </div>
                   <div>
                       <button
-                          onClick={onSignOut}
+                          onClick={authService.onSignOut}
                           className={"rounded w-full px-2 text-white bg-red-700"}
                       >Sign Out</button>
                   </div>

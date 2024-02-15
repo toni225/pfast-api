@@ -3,13 +3,18 @@ import {Link, NavLink} from "react-router-dom";
 import * as userService from "../../services/user.service"
 import {useEffect, useState} from "react";
 import {onSignOut} from "../shared/function.shared";
-import * as Auth from '../../services/auth.service'
+import * as authService from '../../services/auth.service'
 
 const TopNavigation = () => {
     const [isLogin,setIsLogin] = useState(null)
-    
+    const [isParkingOwner,setIsParkingOwner] = useState(null)
+
     useEffect(()=> {
-       Auth.isLoggedIn().then(res=>{setIsLogin(res)}).catch(()=>{setIsLogin(false)})
+        authService.isLoggedIn().then(res=>{setIsLogin(res)}).catch(()=>{setIsLogin(false)})
+        authService.getUserInfo().then(response=>{
+            setIsParkingOwner(response.data.data.user?.user_metadata.isParkingOwner)
+            // console.log(response)
+        }).catch(e=>{console.log(e)})
     },[])
 
     return(
@@ -37,12 +42,20 @@ const TopNavigation = () => {
                                    className="block py-2 px-3 text-white bg-[#0f0e17] rounded md:bg-[#0f0e17] md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500"
                                    aria-current="page">Home</NavLink>
                             </li>
-                            <li>
-                                <NavLink to={'/myparking/2'}
-                                   className="block py-2 px-3 text-gray-900 rounded hover:bg-[#0f0e17] md:hover:bg-[#0f0e17] md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-[#0f0e17] dark:hover:text-white md:dark:hover:bg-[#0f0e17]">
-                                    MyParking
-                                </NavLink>
-                            </li>
+                            {isParkingOwner !== null &&
+                                <li>
+                                    {isParkingOwner ?
+                                        <NavLink to={'/myparking/1'}
+                                                 className="block py-2 px-3 text-gray-900 rounded hover:bg-[#0f0e17] md:hover:bg-[#0f0e17] md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-[#0f0e17] dark:hover:text-white md:dark:hover:bg-[#0f0e17]">
+                                            MyParking
+                                        </NavLink> :
+                                        <NavLink to={'/'}
+                                                 className="block py-2 px-3 text-gray-900 rounded hover:bg-[#0f0e17] md:hover:bg-[#0f0e17] md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-[#0f0e17] dark:hover:text-white md:dark:hover:bg-[#0f0e17]">
+                                            Parking
+                                        </NavLink>
+                                    }
+                                </li>
+                            }
                             <li>
                                 {isLogin ?
                                     <NavLink

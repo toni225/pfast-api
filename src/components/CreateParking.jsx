@@ -1,7 +1,7 @@
 import * as userServices from "../services/user.service"
 
 import Layout from "./layout/Layout";
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import {toast} from "react-toastify";
 import {useNavigate} from "react-router-dom";
 import MapDisplay from "./map/MapDisplay";
@@ -9,8 +9,10 @@ import MapDisplay from "./map/MapDisplay";
 const CreateParking = () => {
     const navigate = useNavigate()
 
+    const localStorageUser = localStorage.getItem('user')
     const [showModal, setShowModal] = useState(false)
 
+    const [username, setUsername] = useState("")
     const [ParkingName,setParkingName] = useState("")
     const [ParkingStatus,setParkingStatus] = useState(false)
     const [Lat,setLat] = useState(undefined)
@@ -38,6 +40,7 @@ const CreateParking = () => {
             FourWheelsStatus,
             TwoWheelsPrice,
             TwoWheelsStatus,
+            username
         }
 
         try{
@@ -45,12 +48,25 @@ const CreateParking = () => {
 
             if(apiResponse.data?.status === 201){
                 toast.success("Parking Created!")
+                setUsername('')
+                setParkingName('')
+                setLat(null)
+                setLng(null)
                 console.log(apiResponse)
             }
         }catch (e){
             toast.error("Error!")
+            console.log(e)
         }
     }
+
+    useEffect(()=>{
+        if(localStorageUser!==null){
+            const lsUsername = JSON.parse(localStorageUser)
+            setUsername(lsUsername.username)
+
+        }
+    },[])
 
     return(
         <Layout>

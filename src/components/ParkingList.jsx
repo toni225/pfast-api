@@ -51,18 +51,18 @@ const ParkingList = () => {
                                         <p className="overflow-hidden text-ellipsis text-slate-200">{new Date(parking.created_at).toLocaleString()}</p>
                                         {/* <p className="overflow-hidden text-ellipsis text-slate-200">{parking.ParkingStatus ? "Available" : "Unavailable"}</p> */}
                                         <p className="overflow-hidden text-ellipsis text-slate-200">
-    {parking.ParkingStatus ? 
-        <>
-            <CheckCircleIcon className="h-5 w-5 text-green-500 inline-block mr-1" />
-            Available
-        </> 
-        : 
-        <>
-            <ExclamationCircleIcon className="h-5 w-5 text-red-500 inline-block mr-1" />
-            Unavailable
-        </>
-    }
-</p>
+                                            {parking.ParkingStatus ? 
+                                                <>
+                                                    <CheckCircleIcon className="h-5 w-5 text-green-500 inline-block mr-1" />
+                                                    Available
+                                                </> 
+                                                : 
+                                                <>
+                                                    <ExclamationCircleIcon className="h-5 w-5 text-red-500 inline-block mr-1" />
+                                                    Unavailable
+                                                </>
+                                            }
+                                        </p>
                                         <p className="overflow-hidden text-ellipsis text-slate-200">{parking.FourWheelsStatus?`Four Wheels: ${parking.FourWheelsPrice  === null ? '-----' : parking.FourWheelsPrice} ` : ""}</p>
                                         <p className="overflow-hidden text-ellipsis text-slate-200">{parking.TwoWheelsStatus?`Two Wheels: ${parking.TwoWheelsPrice === null ? '-----' : parking.TwoWheelsPrice}` : ""}</p>
 

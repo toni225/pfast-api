@@ -8,8 +8,6 @@ import { CheckCircleIcon, ExclamationCircleIcon } from '@heroicons/react/24/soli
 
 
 
-
-
 const ParkingList = () => {
     const navigate = useNavigate()
     const [parkingList,setParkingList] = useState([])
@@ -51,7 +49,20 @@ const ParkingList = () => {
                                         <p className="overflow-hidden text-ellipsis">{/*parking.ParkingID*/}</p>
                                         <p className="overflow-hidden text-ellipsis text-2xl text-slate-200">{parking.ParkingName}</p>
                                         <p className="overflow-hidden text-ellipsis text-slate-200">{new Date(parking.created_at).toLocaleString()}</p>
-<p className="overflow-hidden text-ellipsis text-slate-200">{parking.ParkingStatus ? "Available" : "Unavailable"}</p>
+                                        {/* <p className="overflow-hidden text-ellipsis text-slate-200">{parking.ParkingStatus ? "Available" : "Unavailable"}</p> */}
+                                        <p className="overflow-hidden text-ellipsis text-slate-200">
+                                            {parking.ParkingStatus ? 
+                                                <>
+                                                    <CheckCircleIcon className="h-5 w-5 text-green-500 inline-block mr-1" />
+                                                    Available
+                                                </> 
+                                                : 
+                                                <>
+                                                    <ExclamationCircleIcon className="h-5 w-5 text-red-500 inline-block mr-1" />
+                                                    Unavailable
+                                                </>
+                                            }
+                                        </p>
                                         <p className="overflow-hidden text-ellipsis text-slate-200">{parking.FourWheelsStatus?`Four Wheels: ${parking.FourWheelsPrice  === null ? '-----' : parking.FourWheelsPrice} ` : ""}</p>
                                         <p className="overflow-hidden text-ellipsis text-slate-200">{parking.TwoWheelsStatus?`Two Wheels: ${parking.TwoWheelsPrice === null ? '-----' : parking.TwoWheelsPrice}` : ""}</p>
 
@@ -60,8 +71,9 @@ const ParkingList = () => {
                                             <button
                                             type={"button"}
                                             
-                                            className="px-8 py-8 text-sm font-medium text-center text-white bg-orange-700 rounded-lg hover:bg-orange-800 focus:ring-4 focus:outline-none focus:ring-orange-300 dark:bg-orange-600 dark:hover:bg-orange-700 dark:focus:ring-orange-800"
-                                            onClick={()=>navigate(`/myparking/${parking.ParkingID}`)}>Navigate</button>
+                                            className="px-3 py-3 text-sm font-medium text-center text-white bg-orange-700 rounded-lg hover:bg-orange-800 focus:ring-4 focus:outline-none focus:ring-orange-300 dark:bg-orange-600 dark:hover:bg-orange-700 dark:focus:ring-orange-800"
+                                            onClick={()=>navigate(`/myparking/${parking.ParkingID}`)}><ArrowUpLeftIcon class="h-6 w-6 text-white text-4xl" />Navigate</button>
+
                                     </div>
                                 </div>
                             </li>

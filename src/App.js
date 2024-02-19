@@ -25,7 +25,7 @@ function App() {
             <Route path={'/create'} element={<Protected><CreateParking/></Protected>}/>
             <Route path={'/myparking/:id'} element={<Protected><MyParking/></Protected>}/>
             <Route path={'/myparking/:id/edit'} element={<Protected><EditParking/></Protected>}/>
-            <Route path={'/parking'} element={<Protected><ParkingPage/></Protected>}/>
+            <Route path={'/parking'} element={<ParkingPage/>}/>
             <Route path={'/login'} element={<Login/>}/>
             <Route path={'/signup'} element={<SignUp/>}/>
         </Routes>

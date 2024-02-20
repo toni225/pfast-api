@@ -30,18 +30,19 @@ const ParkingList = () => {
     return (
         <Layout>
             <div>
-                <div className="mt-10 flex justify-center">
+                {/* <div className="mt-10 flex justify-center">
                     <div className="flex items-center">
                         <img src={gps} class="object-contain h-20 w-20" alt=""></img>
+                    </div> */}
+
+                <div className="mt-10 flex justify-center -mb-10">
+                    <div className="flex items-center">
+                        <button onClick={()=>navigate('/parking')}>
+                            <img src={gps} className="object-contain h-20 w-20 mx-auto transition-transform duration-300 transform hover:scale-110" alt=""></img>
+                            <h1 className="text-slate-800 text-2xl text-center font-sans font-bold mb-8">Explore Parkings</h1>
+                        </button>
                     </div>
                 </div>
-
-                <div className="mt-10 flex justify-center items-center">
-                        {<button
-                            className="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900"
-                            onClick={()=>navigate('/parking')}
-                        >Explore</button>}
-                    </div>
 
                 <hr className="m-5 border-slate-500"/>
                 <h1 className="text-black-500 text-4xl text-center font-sans font-bold mb-8">Parking Lots Near You</h1>
@@ -77,7 +78,7 @@ const ParkingList = () => {
                                             type={"button"}
                                             
                                             className="px-3 py-3 text-sm font-medium text-center text-white bg-orange-600 rounded-lg hover:bg-orange-700 focus:ring-4 focus:outline-none focus:ring-orange-300 dark:bg-orange-600 dark:hover:bg-orange-700 dark:focus:ring-orange-800"
-                                            onClick={()=>navigate(`/myparking/${parking.ParkingID}`)}><ArrowUpLeftIcon class="h-6 w-6 text-white text-4xl" />Navigate</button>
+                                            onClick={()=>navigate(`/myparking/${parking.ParkingID}`)}><ArrowUpLeftIcon className="h-6 w-6 text-white text-4xl" />Navigate</button>
 
                                     </div>
                                 </div>

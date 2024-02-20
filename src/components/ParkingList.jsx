@@ -33,12 +33,16 @@ const ParkingList = () => {
                 <div className="mt-10 flex justify-center">
                     <div className="flex items-center">
                         <img src={gps} class="object-contain h-20 w-20" alt=""></img>
-                        {/* <button
-                            className="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900"
-                            onClick={()=>navigate('/parking')}
-                        >Explore</button> */}
                     </div>
                 </div>
+
+                <div className="mt-10 flex justify-center items-center">
+                        {<button
+                            className="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900"
+                            onClick={()=>navigate('/parking')}
+                        >Explore</button>}
+                    </div>
+
                 <hr className="m-5 border-slate-500"/>
                 <h1 className="text-black-500 text-4xl text-center font-sans font-bold mb-8">Parking Lots Near You</h1>
                 <ul role="list" className="grid grid-cols-1 md:grid-cols-3 2xl:grid-cols-5 gap-4 pr-10 pl-10">

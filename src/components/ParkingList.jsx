@@ -2,6 +2,7 @@ import * as userServices from "../services/user.service"
 
 import {useEffect, useState} from "react";
 import Layout from "./layout/Layout";
+import gps from "./images/gps.png"
 import {useNavigate} from "react-router-dom";
 import { ArrowUpLeftIcon } from '@heroicons/react/24/solid'
 import { CheckCircleIcon, ExclamationCircleIcon } from '@heroicons/react/24/solid';
@@ -29,13 +30,13 @@ const ParkingList = () => {
     return (
         <Layout>
             <div>
-                <h1 className="text-orange-500 text-center">PARKING LIST</h1>
                 <div className="mt-10 flex justify-center">
                     <div className="flex items-center">
-                        <button
+                        <img src={gps} class="object-contain h-20 w-20" alt=""></img>
+                        {/* <button
                             className="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900"
                             onClick={()=>navigate('/parking')}
-                        >Explore</button>
+                        >Explore</button> */}
                     </div>
                 </div>
                 <hr className="m-5 border-slate-500"/>
@@ -71,7 +72,7 @@ const ParkingList = () => {
                                             <button
                                             type={"button"}
                                             
-                                            className="px-3 py-3 text-sm font-medium text-center text-white bg-orange-700 rounded-lg hover:bg-orange-800 focus:ring-4 focus:outline-none focus:ring-orange-300 dark:bg-orange-600 dark:hover:bg-orange-700 dark:focus:ring-orange-800"
+                                            className="px-3 py-3 text-sm font-medium text-center text-white bg-orange-600 rounded-lg hover:bg-orange-700 focus:ring-4 focus:outline-none focus:ring-orange-300 dark:bg-orange-600 dark:hover:bg-orange-700 dark:focus:ring-orange-800"
                                             onClick={()=>navigate(`/myparking/${parking.ParkingID}`)}><ArrowUpLeftIcon class="h-6 w-6 text-white text-4xl" />Navigate</button>
 
                                     </div>

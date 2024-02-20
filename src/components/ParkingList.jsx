@@ -38,7 +38,7 @@ const ParkingList = () => {
                 <div className="mt-10 flex justify-center -mb-10">
                     <div className="flex items-center">
                         <button onClick={()=>navigate('/parking')}>
-                            <img src={gps} className="object-contain h-20 w-20 mx-auto" alt=""></img>
+                            <img src={gps} className="object-contain h-20 w-20 mx-auto transition-transform duration-300 transform hover:scale-110" alt=""></img>
                             <h1 className="text-slate-800 text-2xl text-center font-sans font-bold mb-8">Explore Parkings</h1>
                         </button>
                     </div>

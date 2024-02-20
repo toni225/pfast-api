@@ -32,31 +32,42 @@ const MapDisplay = ({data = [],page,markedLocation}) => {
                                         ref={markerRef}
                                         onClick={(e)=>{
                                             console.log(e);
+
                                             setOpenInfoWindow(true);
                                             setSelectedMarker(parking.ParkingID)
-                                            console.log(selectedMarker)
-                                            }} 
+                                            console.log(selectedMarker)}
+                                        } 
                                         position={{lat:parseFloat(parking.Lat),lng:parseFloat(parking.Lng)}}>
                                     <Pin
                                         background={'#22ccff'}
                                         borderColor={'#1e89a1'}
-                                        glyphColor={'#0f677a'}></Pin>
+                                        glyphColor={'#0f677a'}>
+                                    </Pin>
                                     {
                                         openInfoWindow && selectedMarker === parking.ParkingID && (
                                             <div key={parking.ParkingID}>
                                                 <InfoWindow
                                                     position={{lat:parseFloat(parking.Lat),lng:parseFloat(parking.Lng)}}
-                                                    maxWidth={500}
-                                                    minWidth={100}
                                                     onCloseClick={() => setOpenInfoWindow(false)}>
-                                                    {console.log(parking)}
-                                                    {parking.ParkingName}
+                                                    <div className="p-2 relative">
+                                                        <div className="relative">
+                                                            <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.hautetime.com%2Fwp-content%2Fuploads%2F2015%2F08%2FPlace_Vendome_Paris_20_April_2011.jpg&f=1&nofb=1&ipt=18bea3a33b7591e2d27ec2e34c6089aaea807b81e074279344c21f863ab16741&ipo=images" className="max-h-52 rounded-md"></img>
+                                                            <div className="absolute px-3 py-1 bottom-[-18px] left-2 text-[pink] text-3xl bg-slate-800 rounded-full">
+                                                            {parking.ParkingName}
+                                                            </div>
+                                                        </div>
+                                                        <div className="mt-5">
+                                                            <p>asdagagad</p>
+                                                        </div>
+                                                    
+                                                    </div>
                                                 </InfoWindow>
                                             </div>
-                                          )
+                                        )
                                     }
                                     </AdvancedMarker>
-                                </div>)
+                                </div>
+                            )
                         })}
                     </Map>
                 </div>

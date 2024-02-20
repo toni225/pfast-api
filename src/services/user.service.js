@@ -21,10 +21,6 @@ const deleteParking = (id) => {
     return UserDao.deleteParking(id)
 }
 
-const uploadImage = (username,image) => {
-    return UserDao.uploadImage(username,image)
-}
-
 const signUp = (details) => {
     return UserDao.signUp(details)
 }
@@ -65,11 +61,7 @@ export default {
     getParking,
     signUp, signIn, signOut,
     getUser, getUserInfo, getSessions,
-<<<<<<< HEAD
     updateUser, addUserInfo
-=======
-    updateUser, addUserInfo, uploadImage
->>>>>>> Toni
 =======
 import axios from "axios";
 
@@ -154,9 +146,5 @@ export const addUser = async (payload) => {
     const getAddUserEndpoint = `${baseURL}/adduserinfo`
     const apiResponse = axios.post(getAddUserEndpoint,payload)
     return apiResponse
-<<<<<<< HEAD
 >>>>>>> c0d5979b88234f36aac4004f7f25495ad70534c6
-=======
->>>>>>> ee0b53066338c9eeddb4129e09eaf964e166f4e4
->>>>>>> Toni
 }

@@ -1,3 +1,7 @@
 {
+<<<<<<< HEAD
     "rewrites": [{ "source": "/(.*)", "destination": "/api" }]
+=======
+    "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+>>>>>>> ee0b53066338c9eeddb4129e09eaf964e166f4e4
 }

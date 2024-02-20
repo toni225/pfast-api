@@ -9,6 +9,8 @@ import compression from "compression";
 const app = express();
 const port = 4000;
 
+app.use(express.json({limit: '100mb'}));
+app.use(express.urlencoded({limit: '100mb'}));
 app.use(compression())
 app.use(express.json())
 app.use(helmet())
@@ -40,4 +42,8 @@ root.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+<<<<<<< HEAD
 >>>>>>> c0d5979b88234f36aac4004f7f25495ad70534c6
+=======
+>>>>>>> ee0b53066338c9eeddb4129e09eaf964e166f4e4
+>>>>>>> Toni

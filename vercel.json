@@ -3,5 +3,9 @@
     "rewrites": [{ "source": "/(.*)", "destination": "/api" }]
 =======
     "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+<<<<<<< HEAD
 >>>>>>> c0d5979b88234f36aac4004f7f25495ad70534c6
+=======
+>>>>>>> ee0b53066338c9eeddb4129e09eaf964e166f4e4
+>>>>>>> Toni
 }

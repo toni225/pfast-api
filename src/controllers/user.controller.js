@@ -94,6 +94,28 @@ const getParking = async (req,res) => {
   })
 }
 
+const uploadImage = async (req,res) => {
+  const username = req.params.username
+  const {image} = req.files
+
+  console.log(image.data)
+
+  const response = await userService.uploadImage(username,image)
+
+  // if(response.status !== StatusCodes.OK){
+  //   return res.status(response.status).send({
+  //     status: response.status,
+  //     statusText: response.statusText,
+  //     message: "Error."
+  //   })
+  // }
+
+  return res.status(StatusCodes.OK).send({
+    data: response
+  })
+  // res.json(image)
+}
+
 const signUp = async (req,res) => {
   const {body: user} = req
 
@@ -252,5 +274,5 @@ export default {
   getUser,
   getUserInfo,
   getSessions,
-  updateUser, addUserInfo
+  updateUser, addUserInfo, uploadImage
 }

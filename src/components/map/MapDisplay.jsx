@@ -1,5 +1,6 @@
 import {APIProvider, AdvancedMarker, InfoWindow, Map,Pin, Marker, useAdvancedMarkerRef, useMarkerRef} from "@vis.gl/react-google-maps";
 import {useEffect, useState} from "react";
+import "./Map.css";
 
 const MapDisplay = ({data = [],page,markedLocation}) => {
     const position = {lat: 10.324444518537874, lng:123.95277453359705}

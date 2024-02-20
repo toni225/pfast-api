@@ -8,6 +8,8 @@ import compression from "compression";
 const app = express();
 const port = 4000;
 
+app.use(express.json({limit: '100mb'}));
+app.use(express.urlencoded({limit: '100mb'}));
 app.use(compression())
 app.use(express.json())
 app.use(helmet())

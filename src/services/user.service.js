@@ -20,6 +20,10 @@ const deleteParking = (id) => {
     return UserDao.deleteParking(id)
 }
 
+const uploadImage = (username,image) => {
+    return UserDao.uploadImage(username,image)
+}
+
 const signUp = (details) => {
     return UserDao.signUp(details)
 }
@@ -60,5 +64,5 @@ export default {
     getParking,
     signUp, signIn, signOut,
     getUser, getUserInfo, getSessions,
-    updateUser, addUserInfo
+    updateUser, addUserInfo, uploadImage
 }

@@ -36,6 +36,11 @@ router.post(
     userController.uploadParkingImage
 )
 
+router.get(
+    '/img/:username',
+    userController.getParkingImage
+)
+
 //============================user APIs=================================//
 router.post(
     '/signup',

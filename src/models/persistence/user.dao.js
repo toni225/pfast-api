@@ -79,6 +79,20 @@ const uploadParkingImage = async (username,image) => {
 
 }
 
+const getParkingImage = async (username) => {
+
+    const response = await supabase.storage
+        .from('images')
+        .list(username + "/", {
+            limit: 1,
+            offset: 0,
+            sortBy: {column: "created_at", order: "desc"}
+        })
+
+    return response
+
+}
+
 //=====================User APIs==================================
 
 const signUp = async (details) => {
@@ -167,5 +181,6 @@ export default {
     addParking,getAllParking,editParking,
     deleteParking,getParking,signUp,signIn,
     signOut,getUser,getUserInfo,getSessions,
-    updateUser, addUserInfo, uploadParkingImage
+    updateUser, addUserInfo, uploadParkingImage,
+    getParkingImage
 }

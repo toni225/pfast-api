@@ -24,6 +24,10 @@ const uploadParkingImage = (username,image) => {
     return UserDao.uploadParkingImage(username,image)
 }
 
+const getParkingImage = (username) => {
+    return UserDao.getParkingImage(username)
+}
+
 const signUp = (details) => {
     return UserDao.signUp(details)
 }
@@ -64,5 +68,6 @@ export default {
     getParking,
     signUp, signIn, signOut,
     getUser, getUserInfo, getSessions,
-    updateUser, addUserInfo, uploadParkingImage
+    updateUser, addUserInfo, uploadParkingImage,
+    getParkingImage
 }

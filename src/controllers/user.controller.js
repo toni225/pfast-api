@@ -94,6 +94,19 @@ const getParking = async (req,res) => {
   })
 }
 
+const uploadParkingImage = async (req,res) => {
+  const username = req.params.username
+  const {image} = req.files
+
+  const response = await userService.uploadParkingImage(username,image.data)
+
+  return res.status(StatusCodes.OK).send({
+    response
+  })
+}
+
+//==============================User APIs===================
+
 const signUp = async (req,res) => {
   const {body: user} = req
 
@@ -252,5 +265,5 @@ export default {
   getUser,
   getUserInfo,
   getSessions,
-  updateUser, addUserInfo
+  updateUser, addUserInfo, uploadParkingImage
 }

@@ -1,7 +1,9 @@
 import express from "express";
 import userController from "./controllers/user.controller"
 const router = express.Router();
+const FileUpload = require('express-fileupload')
 
+router.use(FileUpload())
 
 //================================parking APIs========================//
 router.get(
@@ -27,6 +29,11 @@ router.delete(
 router.put(
     '/:id',
     userController.editParking
+)
+
+router.post(
+    '/uploadImage/:username',
+    userController.uploadParkingImage
 )
 
 //============================user APIs=================================//

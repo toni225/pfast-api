@@ -1,7 +1,4 @@
-import {createClient} from "@supabase/supabase-js";
-import {REACT_APP_SUPABASE_KEY, REACT_APP_SUPABASE_URL} from "../data/constants";
-
-
+import {v4 as uuidv4} from "uuid"
 import {supabase} from "../data/api"
 import {StatusCodes} from "http-status-codes";
 
@@ -69,6 +66,20 @@ const deleteParking = async (id) => {
         return StatusCodes.NOT_FOUND
     }
 }
+
+const uploadParkingImage = async (username,image) => {
+
+    const response = await supabase.storage
+        .from('images')
+        .upload(`${username}/${uuidv4()}`, image,{
+            contentType: 'image/webp'
+        })
+
+    return response
+
+}
+
+//=====================User APIs==================================
 
 const signUp = async (details) => {
 
@@ -156,5 +167,5 @@ export default {
     addParking,getAllParking,editParking,
     deleteParking,getParking,signUp,signIn,
     signOut,getUser,getUserInfo,getSessions,
-    updateUser, addUserInfo
+    updateUser, addUserInfo, uploadParkingImage
 }

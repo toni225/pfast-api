@@ -100,6 +100,12 @@ const uploadParkingImage = async (req,res) => {
 
   const response = await userService.uploadParkingImage(username,image.data)
 
+  if(response.error){
+    return res.status(StatusCodes.CONFLICT).send({
+      response
+    })
+  }
+
   return res.status(StatusCodes.OK).send({
     response
   })

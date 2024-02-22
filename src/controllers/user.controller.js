@@ -45,7 +45,8 @@ const editParking = async (req, res) => {
 }
 
 const deleteParking = async (req,res) => {
-  const id = parseInt(req.params.id,10)
+  // const id = parseInt(req.params.id,10)
+  const id = req.params.id
 
   const response = await userService.deleteParking(id)
 
@@ -60,7 +61,8 @@ const deleteParking = async (req,res) => {
   return res.status(StatusCodes.OK).send({
     status: StatusCodes.OK,
     statusText: "OK",
-    message: "Parking Successfully deleted."
+    message: "Parking Successfully deleted.",
+    response
   })
 }
 
@@ -97,8 +99,9 @@ const getParking = async (req,res) => {
 const uploadParkingImage = async (req,res) => {
   const username = req.params.username
   const {image} = req.files
+  const {body: parkingName} = req
 
-  const response = await userService.uploadParkingImage(username,image.data)
+  const response = await userService.uploadParkingImage(username,image.data,parkingName)
 
   if(response.error){
     return res.status(StatusCodes.CONFLICT).send({
@@ -113,7 +116,9 @@ const uploadParkingImage = async (req,res) => {
 
 const getParkingImage = async (req,res) => {
   const username = req.params.username
-  const response = await userService.getParkingImage(username)
+  const parkingName = req.params.parkingName
+
+  const response = await userService.getParkingImage(username,parkingName)
 
   if(response.error){
     return res.status(StatusCodes.CONFLICT).send({

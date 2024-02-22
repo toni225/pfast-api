@@ -32,12 +32,12 @@ router.put(
 )
 
 router.post(
-    '/uploadImage/:username',
+    '/img/:username',
     userController.uploadParkingImage
 )
 
 router.get(
-    '/img/:username',
+    '/img/:username/:parkingName',
     userController.getParkingImage
 )
 

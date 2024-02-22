@@ -20,12 +20,12 @@ const deleteParking = (id) => {
     return UserDao.deleteParking(id)
 }
 
-const uploadParkingImage = (username,image) => {
-    return UserDao.uploadParkingImage(username,image)
+const uploadParkingImage = (username,image,parkingName) => {
+    return UserDao.uploadParkingImage(username,image,parkingName)
 }
 
-const getParkingImage = (username) => {
-    return UserDao.getParkingImage(username)
+const getParkingImage = (username,parkingName) => {
+    return UserDao.getParkingImage(username,parkingName)
 }
 
 const signUp = (details) => {

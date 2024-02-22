@@ -48,6 +48,14 @@ const editParking = async (id, details) => {
 
 const deleteParking = async (id) => {
 
+
+    if(isNaN(id)){
+        const response = await supabase.rpc("deleteparking", {
+            tbl: '"ParkingDetails"', col: 'ParkingName', val: id
+        })
+        return response
+    }
+
     const selectResponse = await supabase
         .from('ParkingDetails')
         .select('ParkingID')
@@ -65,13 +73,14 @@ const deleteParking = async (id) => {
     if(selectResponse.data?.length === 0){
         return StatusCodes.NOT_FOUND
     }
+
 }
 
-const uploadParkingImage = async (username,image) => {
+const uploadParkingImage = async (username,image,parkingName) => {
 
     const response = await supabase.storage
         .from('images')
-        .upload(`${username}/${uuidv4()}`, image,{
+        .upload(`${username}/${parkingName.parkingName}/${uuidv4()}`, image,{
             contentType: 'image/webp'
         })
 
@@ -79,11 +88,11 @@ const uploadParkingImage = async (username,image) => {
 
 }
 
-const getParkingImage = async (username) => {
+const getParkingImage = async (username,parkingName) => {
 
     const response = await supabase.storage
         .from('images')
-        .list(username + "/", {
+        .list(`${username}/${parkingName}/`, {
             limit: 1,
             offset: 0,
             sortBy: {column: "created_at", order: "desc"}

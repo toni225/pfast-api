@@ -41,6 +41,10 @@ router.get(
     userController.getParkingImage
 )
 
+router.get(
+    '/myparking/:username',
+    userController.getMyParking
+)
 //============================user APIs=================================//
 router.post(
     '/signup',

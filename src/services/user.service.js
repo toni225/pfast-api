@@ -28,6 +28,10 @@ const getParkingImage = (username,parkingName) => {
     return UserDao.getParkingImage(username,parkingName)
 }
 
+const getMyParking = (username) => {
+    return UserDao.getMyParking(username)
+}
+
 const signUp = (details) => {
     return UserDao.signUp(details)
 }
@@ -69,5 +73,5 @@ export default {
     signUp, signIn, signOut,
     getUser, getUserInfo, getSessions,
     updateUser, addUserInfo, uploadParkingImage,
-    getParkingImage
+    getParkingImage, getMyParking
 }

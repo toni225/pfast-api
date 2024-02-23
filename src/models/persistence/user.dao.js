@@ -102,6 +102,15 @@ const getParkingImage = async (username,parkingName) => {
 
 }
 
+const getMyParking = async (username) => {
+    const response = await supabase
+        .from('ParkingDetails')
+        .select()
+        .eq('username',username)
+
+    return response
+}
+
 //=====================User APIs==================================
 
 const signUp = async (details) => {
@@ -191,5 +200,5 @@ export default {
     deleteParking,getParking,signUp,signIn,
     signOut,getUser,getUserInfo,getSessions,
     updateUser, addUserInfo, uploadParkingImage,
-    getParkingImage
+    getParkingImage, getMyParking
 }

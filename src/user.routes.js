@@ -86,4 +86,14 @@ router.post(
     userController.addUserInfo
 )
 
+router.post(
+    '/resetpassword',
+    userController.resetPassword
+)
+
+router.post(
+    '/updatepassword',
+    userController.updatePassword
+)
+
 export default router

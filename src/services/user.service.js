@@ -64,6 +64,14 @@ const addUserInfo = (details) => {
     return UserDao.addUserInfo(details)
 }
 
+const resetPassword = (email) => {
+    return UserDao.resetPassword(email)
+}
+
+const updatePassword = (password) => {
+    return UserDao.updatePassword(password)
+}
+
 export default {
     addParking,
     getAllParking,
@@ -73,5 +81,6 @@ export default {
     signUp, signIn, signOut,
     getUser, getUserInfo, getSessions,
     updateUser, addUserInfo, uploadParkingImage,
-    getParkingImage, getMyParking
+    getParkingImage, getMyParking, resetPassword,
+    updatePassword
 }

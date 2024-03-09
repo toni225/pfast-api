@@ -291,6 +291,22 @@ const addUserInfo = async (req,res) => {
 
 }
 
+const resetPassword = async (req,res) => {
+  const {body: email} = req
+
+  const response = await userService.resetPassword(email)
+
+  return res.json(response)
+}
+
+const updatePassword = async (req,res) => {
+  const {body: password} = req
+  const response = await userService.updatePassword(password)
+
+  return res.json(response)
+}
+
+
 export default {
   addParking,
   getAllParking,
@@ -304,5 +320,6 @@ export default {
   getUserInfo,
   getSessions,
   updateUser, addUserInfo, uploadParkingImage,
-  getParkingImage, getMyParking
+  getParkingImage, getMyParking, resetPassword,
+  updatePassword
 }

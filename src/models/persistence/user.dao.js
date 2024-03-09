@@ -195,10 +195,26 @@ const addUserInfo = async (details) => {
 
 }
 
+const resetPassword = async ({email}) => {
+    const response = await supabase.auth
+        .resetPasswordForEmail(email,{redirectTo: 'http://localhost:3000/recovery/updatepass'})
+
+    return response
+}
+
+const updatePassword = async ({password}) => {
+    const response = await supabase.auth.updateUser({
+        password
+    })
+
+    return response
+}
+
 export default {
     addParking,getAllParking,editParking,
     deleteParking,getParking,signUp,signIn,
     signOut,getUser,getUserInfo,getSessions,
     updateUser, addUserInfo, uploadParkingImage,
-    getParkingImage, getMyParking
+    getParkingImage, getMyParking, resetPassword,
+    updatePassword
 }

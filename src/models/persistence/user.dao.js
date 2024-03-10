@@ -210,11 +210,21 @@ const updatePassword = async ({password}) => {
     return response
 }
 
+//=========================Admin APIs=============================
+const getReports = async () => {
+    const response = await supabase
+        .from('Report')
+        .select('*, ParkingDetails (ParkingName)')
+        .order('ReportID',{ascending:true})
+
+    return response
+}
+
 export default {
     addParking,getAllParking,editParking,
     deleteParking,getParking,signUp,signIn,
     signOut,getUser,getUserInfo,getSessions,
     updateUser, addUserInfo, uploadParkingImage,
     getParkingImage, getMyParking, resetPassword,
-    updatePassword
+    updatePassword, getReports
 }

@@ -5,6 +5,12 @@ const FileUpload = require('express-fileupload')
 
 router.use(FileUpload())
 
+
+//================================Admin APIs====================================//
+router.get(
+    '/reports',
+    userController.getReports
+)
 //================================parking APIs========================//
 router.get(
     '/all',
@@ -95,5 +101,7 @@ router.post(
     '/updatepassword',
     userController.updatePassword
 )
+
+
 
 export default router

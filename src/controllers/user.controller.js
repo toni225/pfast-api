@@ -306,6 +306,16 @@ const updatePassword = async (req,res) => {
   return res.json(response)
 }
 
+//============================Admin APIs===============================
+const getReports = async (req,res) => {
+  const response = await userService.getReports()
+
+  return res.status(response.status).send({
+    status: response.status,
+    statusText: response.statusText,
+    users: response.data
+  })
+}
 
 export default {
   addParking,
@@ -321,5 +331,5 @@ export default {
   getSessions,
   updateUser, addUserInfo, uploadParkingImage,
   getParkingImage, getMyParking, resetPassword,
-  updatePassword
+  updatePassword, getReports
 }

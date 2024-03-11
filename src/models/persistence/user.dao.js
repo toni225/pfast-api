@@ -220,11 +220,20 @@ const getReports = async () => {
     return response
 }
 
+const banParking = async (id) => {
+
+    const response = await supabase
+        .from('Report')
+        .delete()
+        .eq('ReportID',id)
+    return response
+}
+
 export default {
     addParking,getAllParking,editParking,
     deleteParking,getParking,signUp,signIn,
     signOut,getUser,getUserInfo,getSessions,
     updateUser, addUserInfo, uploadParkingImage,
     getParkingImage, getMyParking, resetPassword,
-    updatePassword, getReports
+    updatePassword, getReports, banParking
 }

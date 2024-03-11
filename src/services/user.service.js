@@ -77,6 +77,10 @@ const getReports = () => {
     return UserDao.getReports()
 }
 
+const banParking = (id) => {
+    return UserDao.banParking(id)
+}
+
 export default {
     addParking,
     getAllParking,
@@ -87,5 +91,5 @@ export default {
     getUser, getUserInfo, getSessions,
     updateUser, addUserInfo, uploadParkingImage,
     getParkingImage, getMyParking, resetPassword,
-    updatePassword, getReports
+    updatePassword, getReports, banParking
 }

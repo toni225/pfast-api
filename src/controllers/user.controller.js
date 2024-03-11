@@ -317,6 +317,16 @@ const getReports = async (req,res) => {
   })
 }
 
+const banParking = async (req,res) => {
+  const id = parseInt(req.params.id,10)
+
+  const response = await userService.banParking(id)
+
+  return res.status(response.status).send({
+    response
+  })
+}
+
 export default {
   addParking,
   getAllParking,
@@ -331,5 +341,5 @@ export default {
   getSessions,
   updateUser, addUserInfo, uploadParkingImage,
   getParkingImage, getMyParking, resetPassword,
-  updatePassword, getReports
+  updatePassword, getReports, banParking
 }

@@ -210,6 +210,27 @@ const updatePassword = async ({password}) => {
     return response
 }
 
+const addParkingHistory = async (user) => {
+    const response = await supabase
+        .from('UserHistory')
+        .insert([
+            { username: user.username, ParkingID: user.ParkingID },
+        ])
+        .select()
+
+    return response
+}
+
+const getParkingHistory = async (user) => {
+    const response = await supabase
+        .from('UserHistory')
+        .select('*, ParkingDetails (*)')
+        .eq('username',user)
+
+    return response
+    // return user
+}
+
 //=========================Admin APIs=============================
 const getReports = async () => {
     const response = await supabase
@@ -235,5 +256,6 @@ export default {
     signOut,getUser,getUserInfo,getSessions,
     updateUser, addUserInfo, uploadParkingImage,
     getParkingImage, getMyParking, resetPassword,
-    updatePassword, getReports, banParking
+    updatePassword, getReports, banParking,
+    addParkingHistory, getParkingHistory
 }

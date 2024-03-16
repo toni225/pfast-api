@@ -306,6 +306,26 @@ const updatePassword = async (req,res) => {
   return res.json(response)
 }
 
+const addParkingHistory = async (req,res) => {
+  const {body: user} = req
+
+  const response = await userService.addParkingHistory(user)
+
+  return res.status(200).send({
+    response
+  })
+}
+
+const getParkingHistory = async (req,res) => {
+  const user = req.params.user
+
+  const response = await userService.getParkingHistory(user)
+
+  return res.status(200).send({
+    response
+  })
+}
+
 //============================Admin APIs===============================
 const getReports = async (req,res) => {
   const response = await userService.getReports()
@@ -341,5 +361,6 @@ export default {
   getSessions,
   updateUser, addUserInfo, uploadParkingImage,
   getParkingImage, getMyParking, resetPassword,
-  updatePassword, getReports, banParking
+  updatePassword, getReports, banParking,
+  addParkingHistory, getParkingHistory
 }

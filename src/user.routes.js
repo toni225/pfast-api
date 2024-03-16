@@ -107,6 +107,16 @@ router.post(
     userController.updatePassword
 )
 
+router.post(
+    '/addparkinghistory',
+    userController.addParkingHistory
+)
+
+router.get(
+    '/getparkinghistory/:user',
+    userController.getParkingHistory
+)
+
 
 
 export default router

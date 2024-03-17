@@ -226,9 +226,9 @@ const getParkingHistory = async (user) => {
         .from('UserHistory')
         .select('*, ParkingDetails (*)')
         .eq('username',user)
+        .order('created_at', {ascending:false})
 
     return response
-    // return user
 }
 
 //=========================Admin APIs=============================
@@ -236,7 +236,7 @@ const getReports = async () => {
     const response = await supabase
         .from('Report')
         .select('*, ParkingDetails (ParkingName)')
-        .order('ReportID',{ascending:true})
+        .order('created_at',{ascending:false})
 
     return response
 }
@@ -250,12 +250,26 @@ const banParking = async (id) => {
     return response
 }
 
+const addReport = async (body) => {
+    const response = await supabase
+        .from('Report')
+        .insert([
+            {
+                username: body.username,
+                ParkingID: body.ParkingID,
+                body: body.body,
+            },
+        ])
+        .select()
+    return response
+}
+
 export default {
     addParking,getAllParking,editParking,
     deleteParking,getParking,signUp,signIn,
     signOut,getUser,getUserInfo,getSessions,
     updateUser, addUserInfo, uploadParkingImage,
     getParkingImage, getMyParking, resetPassword,
-    updatePassword, getReports, banParking,
+    updatePassword, getReports, banParking, addReport,
     addParkingHistory, getParkingHistory
 }

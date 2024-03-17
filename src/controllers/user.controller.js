@@ -347,6 +347,16 @@ const banParking = async (req,res) => {
   })
 }
 
+const addReport = async (req,res) => {
+  const {body} = req
+
+  const response = await userService.addReport(body)
+
+  return res.status(response.status).send({
+    response
+  })
+}
+
 export default {
   addParking,
   getAllParking,
@@ -361,6 +371,6 @@ export default {
   getSessions,
   updateUser, addUserInfo, uploadParkingImage,
   getParkingImage, getMyParking, resetPassword,
-  updatePassword, getReports, banParking,
+  updatePassword, getReports, banParking, addReport,
   addParkingHistory, getParkingHistory
 }

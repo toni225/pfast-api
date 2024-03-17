@@ -16,6 +16,11 @@ router.delete(
     '/reports/:id',
     userController.banParking
 )
+
+router.post(
+    '/report',
+    userController.addReport
+)
 //================================parking APIs========================//
 router.get(
     '/all',

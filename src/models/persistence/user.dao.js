@@ -213,9 +213,7 @@ const updatePassword = async ({password}) => {
 const addParkingHistory = async (user) => {
     const response = await supabase
         .from('UserHistory')
-        .insert([
-            { username: user.username, ParkingID: user.ParkingID },
-        ])
+        .upsert([user])
         .select()
 
     return response

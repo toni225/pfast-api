@@ -48,7 +48,6 @@ const editParking = async (id, details) => {
 
 const deleteParking = async (id) => {
 
-
     if(isNaN(id)){
         const response = await supabase.rpc("deleteparking", {
             tbl: '"ParkingDetails"', col: 'ParkingName', val: id
@@ -59,13 +58,13 @@ const deleteParking = async (id) => {
     const selectResponse = await supabase
         .from('ParkingDetails')
         .select('ParkingID')
-        .eq('ParkingID',id)
+        .eq('ParkingID',parseInt(id,10))
 
     if(selectResponse.data.length > 0){
         const response = await supabase
             .from('ParkingDetails')
             .delete()
-            .eq('ParkingID', id)
+            .eq('ParkingID', parseInt(id,10))
 
         return response.status
     }
@@ -230,11 +229,21 @@ const getParkingHistory = async (user) => {
 }
 
 //=========================Admin APIs=============================
-const getReports = async () => {
+const getAllReports = async () => {
     const response = await supabase
         .from('Report')
         .select('*, ParkingDetails (ParkingName)')
         .order('created_at',{ascending:false})
+
+    return response
+}
+
+const getReports = async (ParkingID) => {
+    const response = await supabase
+        .from('Report')
+        .select('*, ParkingDetails (ParkingName)')
+        .order('created_at',{ascending:false})
+        .eq('ParkingID',ParkingID)
 
     return response
 }
@@ -268,6 +277,6 @@ export default {
     signOut,getUser,getUserInfo,getSessions,
     updateUser, addUserInfo, uploadParkingImage,
     getParkingImage, getMyParking, resetPassword,
-    updatePassword, getReports, banParking, addReport,
+    updatePassword, getAllReports, getReports, banParking, addReport,
     addParkingHistory, getParkingHistory
 }

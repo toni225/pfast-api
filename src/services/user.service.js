@@ -81,8 +81,12 @@ const getParkingHistory = (user) => {
 }
 
 //=====================================Admin APIs================================
-const getReports = () => {
-    return UserDao.getReports()
+const getAllReports = () => {
+    return UserDao.getAllReports()
+}
+
+const getReports = (ParkingID) => {
+    return UserDao.getReports(ParkingID)
 }
 
 const banParking = (id) => {
@@ -103,6 +107,6 @@ export default {
     getUser, getUserInfo, getSessions,
     updateUser, addUserInfo, uploadParkingImage,
     getParkingImage, getMyParking, resetPassword,
-    updatePassword, getReports, banParking, addReport,
+    updatePassword, getAllReports, getReports, banParking, addReport,
     addParkingHistory, getParkingHistory
 }

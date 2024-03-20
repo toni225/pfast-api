@@ -8,7 +8,12 @@ router.use(FileUpload())
 
 //================================Admin APIs====================================//
 router.get(
-    '/reports',
+    '/allreports',
+    userController.getAllReports
+)
+
+router.get(
+    '/reports/:id',
     userController.getReports
 )
 

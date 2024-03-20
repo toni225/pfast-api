@@ -54,7 +54,8 @@ const deleteParking = async (req,res) => {
     return res.status(StatusCodes.NOT_FOUND).send({
       status: StatusCodes.NOT_FOUND,
       statusText: "Not Found.",
-      message: "Error."
+      message: "Error.",
+      response
     })
   }
 
@@ -327,8 +328,20 @@ const getParkingHistory = async (req,res) => {
 }
 
 //============================Admin APIs===============================
+const getAllReports = async (req,res) => {
+  const response = await userService.getAllReports()
+
+  return res.status(response.status).send({
+    status: response.status,
+    statusText: response.statusText,
+    users: response.data
+  })
+}
+
 const getReports = async (req,res) => {
-  const response = await userService.getReports()
+  const ParkingID = parseInt(req.params.id,10)
+
+  const response = await userService.getReports(ParkingID)
 
   return res.status(response.status).send({
     status: response.status,
@@ -371,6 +384,6 @@ export default {
   getSessions,
   updateUser, addUserInfo, uploadParkingImage,
   getParkingImage, getMyParking, resetPassword,
-  updatePassword, getReports, banParking, addReport,
+  updatePassword, getAllReports, getReports, banParking, addReport,
   addParkingHistory, getParkingHistory
 }

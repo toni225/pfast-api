@@ -97,6 +97,22 @@ const addReport = (body) => {
     return UserDao.addReport(body)
 }
 
+const allNotifications = (username) => {
+    return UserDao.allNotifications(username)
+}
+
+const deleteNotifications = (username) => {
+    return UserDao.deleteNotifications(username)
+}
+
+const addNotification = (notifBody) => {
+    return UserDao.addNotification(notifBody)
+}
+
+const updateNotification = (notifBody) => {
+    return UserDao.updateNotification(notifBody)
+}
+
 export default {
     addParking,
     getAllParking,
@@ -108,5 +124,6 @@ export default {
     updateUser, addUserInfo, uploadParkingImage,
     getParkingImage, getMyParking, resetPassword,
     updatePassword, getAllReports, getReports, banParking, addReport,
-    addParkingHistory, getParkingHistory
+    addParkingHistory, getParkingHistory, allNotifications,
+    deleteNotifications, addNotification, updateNotification
 }

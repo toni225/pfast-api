@@ -6,6 +6,27 @@ const FileUpload = require('express-fileupload')
 router.use(FileUpload())
 
 
+//========================Notification API============================//
+router.get(
+    '/notification/:username',
+    userController.allNotifications
+)
+
+router.post(
+    '/notification',
+    userController.addNotification
+)
+
+router.put(
+    '/notification',
+    userController.updateNotification
+)
+
+router.delete(
+    '/notification/:username',
+    userController.deleteNotifications
+)
+
 //================================Admin APIs====================================//
 router.get(
     '/allreports',
@@ -126,7 +147,5 @@ router.get(
     '/getparkinghistory/:user',
     userController.getParkingHistory
 )
-
-
 
 export default router

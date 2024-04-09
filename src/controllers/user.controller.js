@@ -370,6 +370,77 @@ const addReport = async (req,res) => {
   })
 }
 
+const allNotifications = async (req,res) => {
+  const {username} = req.params
+
+  const response = await userService.allNotifications(username)
+
+  if(response.data.length === 0){
+    return res.status(404).send({
+      message: 'No notifications found.',
+      response
+    })
+  }
+
+  return res.status(response.status).send({
+    response
+  })
+}
+
+const deleteNotifications = async (req,res) => {
+  const {username} = req.params
+
+  const response = await userService.deleteNotifications(username)
+
+  if (response.data.length === 0) {
+    return res.status(404).send({
+      message: 'No user found!',
+      response
+    })
+  }
+
+  return res.status(response.status).send({
+    message: 'Notifications deleted.',
+    response
+  })
+}
+
+const addNotification = async (req,res) => {
+  const notifBody = req.body
+
+  const response = await userService.addNotification(notifBody)
+
+  if (response.status != StatusCodes.CREATED) {
+    return res.status(response.status).send({
+      response
+    })
+  }
+
+  return res.status(response.status).send({
+    message: 'Notification added.',
+    response
+  })
+}
+
+const updateNotification = async (req,res) => {
+  const notifBody = req.body
+
+  const response = await userService.updateNotification(notifBody)
+
+  if (response.status == StatusCodes.CREATED) {
+    return res.status(StatusCodes.OK).send({
+      message: 'Notification updated.',
+      response
+    })
+  }
+
+  return res.status(response.status).send({
+    message: response.error?.message,
+    response
+  })
+
+}
+
 export default {
   addParking,
   getAllParking,
@@ -385,5 +456,6 @@ export default {
   updateUser, addUserInfo, uploadParkingImage,
   getParkingImage, getMyParking, resetPassword,
   updatePassword, getAllReports, getReports, banParking, addReport,
-  addParkingHistory, getParkingHistory
+  addParkingHistory, getParkingHistory, allNotifications, deleteNotifications,
+  addNotification, updateNotification
 }

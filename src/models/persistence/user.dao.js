@@ -15,7 +15,7 @@ const addParking = async (details) => {
 const getAllParking = async () => {
     const response = await supabase
         .from('ParkingDetails')
-        .select()
+        .select('*,username (*)')
         .order('ParkingID',{ascending:true})
 
     return response
@@ -271,6 +271,42 @@ const addReport = async (body) => {
     return response
 }
 
+const allNotifications = async (username) => {
+    const response = supabase
+        .from('Notification')
+        .select()
+        .eq('username', username)
+
+    return response
+}
+
+const deleteNotifications = async (username) => {
+    const response = supabase
+        .from('Notification')
+        .delete()
+        .eq('username',username)
+        .select()
+
+    return response
+}
+
+const updateNotification = async (notifBody) => {
+    const response = supabase
+        .from('Notification')
+        .update(notifBody)
+        .eq('NotifID',notifBody.NotifID)
+
+    return response
+}
+
+const addNotification = async (notifBody) => {
+    const response = supabase
+        .from('Notification')
+        .insert(notifBody)
+
+    return response
+}
+
 export default {
     addParking,getAllParking,editParking,
     deleteParking,getParking,signUp,signIn,
@@ -278,5 +314,6 @@ export default {
     updateUser, addUserInfo, uploadParkingImage,
     getParkingImage, getMyParking, resetPassword,
     updatePassword, getAllReports, getReports, banParking, addReport,
-    addParkingHistory, getParkingHistory
+    addParkingHistory, getParkingHistory, allNotifications,
+    deleteNotifications, addNotification, updateNotification
 }

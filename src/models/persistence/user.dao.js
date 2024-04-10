@@ -16,7 +16,7 @@ const getAllParking = async () => {
     const response = await supabase
         .from('ParkingDetails')
         .select('*,username (*)')
-        .order('ParkingID',{ascending:true})
+        .order('ParkingStatus',{ascending:false})
 
     return response
 }
@@ -274,7 +274,8 @@ const addReport = async (body) => {
 const allNotifications = async (username) => {
     const response = supabase
         .from('Notification')
-        .select()
+        .select('*, ParkingID (*)')
+        .order('created_at, isRead', {ascending: false})
         .eq('username', username)
 
     return response

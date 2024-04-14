@@ -295,7 +295,7 @@ const updateNotification = async (notifBody) => {
     const response = supabase
         .from('Notification')
         .update(notifBody)
-        .eq('NotifID',notifBody.NotifID)
+        .eq('username',notifBody.username)
 
     return response
 }

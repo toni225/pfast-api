@@ -275,7 +275,7 @@ const allNotifications = async (username) => {
     const response = supabase
         .from('Notification')
         .select('*, ParkingID (*)')
-        .order('created_at, isRead', {ascending: false})
+        .order('created_at', {ascending: false})
         .eq('username', username)
 
     return response

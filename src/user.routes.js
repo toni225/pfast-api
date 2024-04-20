@@ -5,6 +5,17 @@ const FileUpload = require('express-fileupload')
 
 router.use(FileUpload())
 
+//========================Logs API==================================//
+
+router.post(
+    '/logs',
+    userController.addLogs
+)
+
+router.get(
+    '/logs/:username',
+    userController.getLogs
+)
 
 //========================Notification API============================//
 router.get(

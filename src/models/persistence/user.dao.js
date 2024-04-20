@@ -308,6 +308,25 @@ const addNotification = async (notifBody) => {
     return response
 }
 
+//===========================Logs APIs=============================//
+
+const addLogs = async (logBody) => {
+    const response = supabase
+        .from('UserLogs')
+        .insert(logBody)
+
+    return response
+}
+
+const getLogs = async (username) => {
+    const response = supabase
+        .from('UserLogs')
+        .select()
+        .eq('username', username)
+
+    return response
+}
+
 export default {
     addParking,getAllParking,editParking,
     deleteParking,getParking,signUp,signIn,
@@ -316,5 +335,6 @@ export default {
     getParkingImage, getMyParking, resetPassword,
     updatePassword, getAllReports, getReports, banParking, addReport,
     addParkingHistory, getParkingHistory, allNotifications,
-    deleteNotifications, addNotification, updateNotification
+    deleteNotifications, addNotification, updateNotification, addLogs,
+    getLogs
 }

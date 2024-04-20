@@ -113,6 +113,15 @@ const updateNotification = (notifBody) => {
     return UserDao.updateNotification(notifBody)
 }
 
+//=========================Logs APIs==================================//
+const addLogs = (logBody) => {
+    return UserDao.addLogs(logBody)
+}
+
+const getLogs = (username) => {
+    return UserDao.getLogs(username)
+}
+
 export default {
     addParking,
     getAllParking,
@@ -125,5 +134,6 @@ export default {
     getParkingImage, getMyParking, resetPassword,
     updatePassword, getAllReports, getReports, banParking, addReport,
     addParkingHistory, getParkingHistory, allNotifications,
-    deleteNotifications, addNotification, updateNotification
+    deleteNotifications, addNotification, updateNotification,
+    addLogs, getLogs
 }

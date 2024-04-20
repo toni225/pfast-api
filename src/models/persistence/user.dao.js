@@ -322,6 +322,7 @@ const getLogs = async (username) => {
     const response = supabase
         .from('UserLogs')
         .select()
+        .order('created_at', {ascending: false})
         .eq('username', username)
 
     return response

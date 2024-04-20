@@ -441,6 +441,42 @@ const updateNotification = async (req,res) => {
 
 }
 
+//==========================Logs APIs===========================//
+
+const addLogs = async (req,res) => {
+  const logBody = req.body
+
+  const response = await userService.addLogs(logBody)
+
+  if (response.status != StatusCodes.CREATED) {
+    return res.status(response.status).send({
+      response
+    })
+  }
+
+  return res.status(response.status).send({
+    message: 'Log added.',
+    response
+  })
+}
+
+const getLogs = async (req,res) => {
+  const {username} = req.params
+
+  const response = await userService.getLogs(username)
+
+  if (response.status != StatusCodes.OK) {
+    return res.status(response.status).send({
+      response
+    })
+  }
+
+  return res.status(response.status).send({
+    message: `${username} logs.`,
+    response
+  })
+}
+
 export default {
   addParking,
   getAllParking,
@@ -457,5 +493,5 @@ export default {
   getParkingImage, getMyParking, resetPassword,
   updatePassword, getAllReports, getReports, banParking, addReport,
   addParkingHistory, getParkingHistory, allNotifications, deleteNotifications,
-  addNotification, updateNotification
+  addNotification, updateNotification, addLogs, getLogs
 }

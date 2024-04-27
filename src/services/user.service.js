@@ -80,6 +80,10 @@ const getParkingHistory = (user) => {
     return UserDao.getParkingHistory(user)
 }
 
+const getParkingHistoryOwner = (user) => {
+    return UserDao.getParkingHistoryOwner(user)
+}
+
 //=====================================Admin APIs================================
 const getAllReports = () => {
     return UserDao.getAllReports()
@@ -135,5 +139,5 @@ export default {
     updatePassword, getAllReports, getReports, banParking, addReport,
     addParkingHistory, getParkingHistory, allNotifications,
     deleteNotifications, addNotification, updateNotification,
-    addLogs, getLogs
+    addLogs, getLogs, getParkingHistoryOwner
 }

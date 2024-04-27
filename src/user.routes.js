@@ -159,4 +159,9 @@ router.get(
     userController.getParkingHistory
 )
 
+router.get(
+    '/getparkinghistoryowner/:user',
+    userController.getParkingHistoryOwner
+)
+
 export default router

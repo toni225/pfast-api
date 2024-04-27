@@ -228,6 +228,16 @@ const getParkingHistory = async (user) => {
     return response
 }
 
+const getParkingHistoryOwner = async (user) => {
+    const response = await supabase
+        .from('UserHistory')
+        .select('*, ParkingDetails (*), username (*)')
+        .eq('ParkingOwner',user)
+        .order('created_at', {ascending:false})
+
+    return response
+}
+
 //=========================Admin APIs=============================
 const getAllReports = async () => {
     const response = await supabase
@@ -337,5 +347,5 @@ export default {
     updatePassword, getAllReports, getReports, banParking, addReport,
     addParkingHistory, getParkingHistory, allNotifications,
     deleteNotifications, addNotification, updateNotification, addLogs,
-    getLogs
+    getLogs, getParkingHistoryOwner
 }

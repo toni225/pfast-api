@@ -327,6 +327,16 @@ const getParkingHistory = async (req,res) => {
   })
 }
 
+const getParkingHistoryOwner = async (req,res) => {
+  const user = req.params.user
+
+  const response = await userService.getParkingHistoryOwner(user)
+
+  return res.status(200).send({
+    response
+  })
+}
+
 //============================Admin APIs===============================
 const getAllReports = async (req,res) => {
   const response = await userService.getAllReports()
@@ -493,5 +503,5 @@ export default {
   getParkingImage, getMyParking, resetPassword,
   updatePassword, getAllReports, getReports, banParking, addReport,
   addParkingHistory, getParkingHistory, allNotifications, deleteNotifications,
-  addNotification, updateNotification, addLogs, getLogs
+  addNotification, updateNotification, addLogs, getLogs, getParkingHistoryOwner
 }

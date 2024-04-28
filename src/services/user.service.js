@@ -85,8 +85,8 @@ const getParkingHistoryOwner = (user) => {
 }
 
 //=====================================Admin APIs================================
-const getAllReports = () => {
-    return UserDao.getAllReports()
+const getAllReports = (reportType) => {
+    return UserDao.getAllReports(reportType)
 }
 
 const getReports = (ParkingID) => {

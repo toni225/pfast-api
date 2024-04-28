@@ -239,10 +239,11 @@ const getParkingHistoryOwner = async (user) => {
 }
 
 //=========================Admin APIs=============================
-const getAllReports = async () => {
+const getAllReports = async (reportType) => {
     const response = await supabase
         .from('Report')
         .select('*, ParkingDetails (ParkingName)')
+        .eq("ParkingLot", reportType)
         .order('created_at',{ascending:false})
 
     return response

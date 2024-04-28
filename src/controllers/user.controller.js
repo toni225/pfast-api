@@ -339,7 +339,9 @@ const getParkingHistoryOwner = async (req,res) => {
 
 //============================Admin APIs===============================
 const getAllReports = async (req,res) => {
-  const response = await userService.getAllReports()
+  const {reportType} = req.params
+
+  const response = await userService.getAllReports(reportType)
 
   return res.status(response.status).send({
     status: response.status,

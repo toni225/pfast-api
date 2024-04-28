@@ -263,7 +263,7 @@ const getReportsPO = async (ParkingID) => {
 const getReportsVO = async (username) => {
     const response = await supabase
         .from('Report')
-        .select('*, UserInfo (*)')
+        .select('*, UserInfo (*), ParkingDetails (*)')
         .order('created_at',{ascending:false})
         .eq('username',username)
         .eq('ParkingLot',false)

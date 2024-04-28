@@ -89,8 +89,12 @@ const getAllReports = (reportType) => {
     return UserDao.getAllReports(reportType)
 }
 
-const getReports = (ParkingID) => {
-    return UserDao.getReports(ParkingID)
+const getReportsPO = (ParkingID) => {
+    return UserDao.getReportsPO(ParkingID)
+}
+
+const getReportsVO = (username) => {
+    return UserDao.getReportsVO(username)
 }
 
 const banParking = (id) => {
@@ -136,8 +140,8 @@ export default {
     getUser, getUserInfo, getSessions,
     updateUser, addUserInfo, uploadParkingImage,
     getParkingImage, getMyParking, resetPassword,
-    updatePassword, getAllReports, getReports, banParking, addReport,
+    updatePassword, getAllReports, getReportsPO, banParking, addReport,
     addParkingHistory, getParkingHistory, allNotifications,
     deleteNotifications, addNotification, updateNotification,
-    addLogs, getLogs, getParkingHistoryOwner
+    addLogs, getLogs, getParkingHistoryOwner, getReportsVO
 }

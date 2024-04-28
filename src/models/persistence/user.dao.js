@@ -249,12 +249,24 @@ const getAllReports = async (reportType) => {
     return response
 }
 
-const getReports = async (ParkingID) => {
+const getReportsPO = async (ParkingID) => {
     const response = await supabase
         .from('Report')
         .select('*, ParkingDetails (ParkingName)')
         .order('created_at',{ascending:false})
         .eq('ParkingID',ParkingID)
+        .eq('ParkingLot',true)
+
+    return response
+}
+
+const getReportsVO = async (username) => {
+    const response = await supabase
+        .from('Report')
+        .select('*, UserInfo (*)')
+        .order('created_at',{ascending:false})
+        .eq('username',username)
+        .eq('ParkingLot',false)
 
     return response
 }
@@ -345,8 +357,8 @@ export default {
     signOut,getUser,getUserInfo,getSessions,
     updateUser, addUserInfo, uploadParkingImage,
     getParkingImage, getMyParking, resetPassword,
-    updatePassword, getAllReports, getReports, banParking, addReport,
+    updatePassword, getAllReports, getReportsPO, banParking, addReport,
     addParkingHistory, getParkingHistory, allNotifications,
     deleteNotifications, addNotification, updateNotification, addLogs,
-    getLogs, getParkingHistoryOwner
+    getLogs, getParkingHistoryOwner, getReportsVO
 }

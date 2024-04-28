@@ -40,7 +40,7 @@ router.delete(
 
 //================================Admin APIs====================================//
 router.get(
-    '/allreports',
+    '/allreports/:reportType',
     userController.getAllReports
 )
 

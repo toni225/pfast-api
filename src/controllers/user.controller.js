@@ -350,10 +350,22 @@ const getAllReports = async (req,res) => {
   })
 }
 
-const getReports = async (req,res) => {
+const getReportsPO = async (req,res) => {
   const ParkingID = parseInt(req.params.id,10)
 
-  const response = await userService.getReports(ParkingID)
+  const response = await userService.getReportsPO(ParkingID)
+
+  return res.status(response.status).send({
+    status: response.status,
+    statusText: response.statusText,
+    users: response.data
+  })
+}
+
+const getReportsVO = async (req,res) => {
+  const {username} = req.params
+
+  const response = await userService.getReportsVO(username)
 
   return res.status(response.status).send({
     status: response.status,
@@ -503,7 +515,8 @@ export default {
   getSessions,
   updateUser, addUserInfo, uploadParkingImage,
   getParkingImage, getMyParking, resetPassword,
-  updatePassword, getAllReports, getReports, banParking, addReport,
+  updatePassword, getAllReports, getReportsPO, banParking, addReport,
   addParkingHistory, getParkingHistory, allNotifications, deleteNotifications,
-  addNotification, updateNotification, addLogs, getLogs, getParkingHistoryOwner
+  addNotification, updateNotification, addLogs, getLogs, getParkingHistoryOwner,
+  getReportsVO
 }

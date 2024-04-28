@@ -45,8 +45,13 @@ router.get(
 )
 
 router.get(
-    '/reports/:id',
-    userController.getReports
+    '/reportspo/:id',
+    userController.getReportsPO
+)
+
+router.get(
+    '/reportsvo/:username',
+    userController.getReportsVO
 )
 
 router.delete(

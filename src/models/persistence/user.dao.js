@@ -283,13 +283,7 @@ const banParking = async (id) => {
 const addReport = async (body) => {
     const response = await supabase
         .from('Report')
-        .insert([
-            {
-                username: body.username,
-                ParkingID: body.ParkingID,
-                body: body.body,
-            },
-        ])
+        .insert([body])
         .select()
     return response
 }

@@ -231,7 +231,7 @@ const getParkingHistory = async (user) => {
 const getParkingHistoryOwner = async (user) => {
     const response = await supabase
         .from('UserHistory')
-        .select('*, ParkingDetails (*), username (*)')
+        .select('*, ParkingDetails (*), UserInfo (*)')
         .eq('ParkingOwner',user)
         .order('created_at', {ascending:false})
 

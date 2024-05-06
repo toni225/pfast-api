@@ -400,7 +400,7 @@ const allNotifications = async (req,res) => {
   const response = await userService.allNotifications(username)
 
   if(response.data.length === 0){
-    return res.status(404).send({
+    return res.status(204).send({
       message: 'No notifications found.',
       response
     })

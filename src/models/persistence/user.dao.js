@@ -196,7 +196,7 @@ const addUserInfo = async (details) => {
 
 const resetPassword = async ({email}) => {
     const response = await supabase.auth
-        .resetPasswordForEmail(email,{redirectTo: 'http://localhost:3000/recovery/updatepass'})
+        .resetPasswordForEmail(email,{redirectTo: 'https://pfastfe.vercel.app/recovery/updatepass'})
 
     return response
 }

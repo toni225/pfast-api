@@ -16,6 +16,7 @@ const getAllParking = async () => {
     const response = await supabase
         .from('ParkingDetails')
         .select('*,username (*)')
+        .order('ParkingName',{ascending:true})
         .order('ParkingStatus',{ascending:false})
 
     return response
